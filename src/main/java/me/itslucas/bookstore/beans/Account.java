@@ -4,6 +4,7 @@ import me.itslucas.bookstore.enums.Roles;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
 
 public class Account {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Id;
     private String userName;
     private String passWord;
@@ -20,8 +21,8 @@ public class Account {
     private String address;
     private Roles role;
 
-    public Account(Long id, String userName, String passWord, String phoneNumber, String address, Roles role) {
-        Id = id;
+    public Account(Long Id, String userName, String passWord, String phoneNumber, String address, Roles role) {
+        this.Id = Id;
         this.userName = userName;
         this.passWord = passWord;
         this.phoneNumber = phoneNumber;
