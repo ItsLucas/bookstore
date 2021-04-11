@@ -21,8 +21,7 @@ public class Account {
     private String address;
     private Roles role;
     private int balance;
-    public Account(Long Id, String userName, String passWord, String phoneNumber, String address, Roles role, int balance) {
-        this.Id = Id;
+    public Account(String userName, String passWord, String phoneNumber, String address, Roles role, int balance) {
         this.userName = userName;
         this.passWord = passWord;
         this.phoneNumber = phoneNumber;
@@ -60,4 +59,8 @@ public class Account {
     }
 
     public int getBalance() {return balance;}
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
+    }
 }
