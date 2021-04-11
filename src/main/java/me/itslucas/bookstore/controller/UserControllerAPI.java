@@ -6,16 +6,24 @@ import me.itslucas.bookstore.repos.AccountRepository;
 import me.itslucas.bookstore.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.lang.NonNullApi;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
-public class UserController {
+@RestController
+@RequestMapping("/api")
+public class UserControllerAPI {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private UserService userService;
-    @GetMapping("/api/login")
+    @Autowired
+    public UserControllerAPI(UserService userService) {
+        this.userService=userService;
+    }
+
+    @GetMapping("/login")
     public boolean userLogin(@RequestParam(value="username") String username, @RequestParam(value="password") String password) {
         try {
             Account account = userService.findByUserName(username);
@@ -30,10 +38,23 @@ public class UserController {
         }
     }
 
-    @GetMapping("/api/tests/account")
+    @GetMapping("/tests/account")
+    @ResponseStatus(HttpStatus.CREATED)
     public String addDefaultAccount() {
-        Account account = new Account(10086L,"lucas","990924","17621979123","test", Roles.BOSS);
+        Account account = new Account(10086L,"lucas","990924","17621979123","test", Roles.BOSS,23333);
         userService.addNewAccount(account);
         return "Success";
+    }
+
+    @PostMapping("/register")
+    @ResponseStatus(HttpStatus.CREATED)
+    public boolean registerAccount(@RequestBody Account account) {
+        if(userService.accountExistsByUserName(account.getUserName())) {
+            return false;
+        }
+        else {
+            userService.addNewAccount(account);
+            return true;
+        }
     }
 }

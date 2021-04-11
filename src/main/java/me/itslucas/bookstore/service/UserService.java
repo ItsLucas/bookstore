@@ -26,6 +26,13 @@ public class UserService {
         }
         else return account.get();
     }
+    public boolean accountExistsByUserName(String userName) {
+        Account account = (Account) accountRepository.findByUserName(userName);
+        if(account==null) {
+            return false;
+        }
+        return true;
+    }
     public Account findByUserName(String userName) throws Exception {
         Account account = (Account) accountRepository.findByUserName(userName);
         if(account==null) {
@@ -59,4 +66,9 @@ public class UserService {
     public Long count() {
         return accountRepository.count();
     }
+
+    public int getBalanceById(Long id) {
+        return accountRepository.findById(id).get().getBalance();
+    }
+
 }
