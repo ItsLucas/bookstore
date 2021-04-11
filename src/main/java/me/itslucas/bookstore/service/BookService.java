@@ -1,32 +1,14 @@
 package me.itslucas.bookstore.service;
 
-import me.itslucas.bookstore.beans.Book;
-import me.itslucas.bookstore.repos.BookRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import me.itslucas.bookstore.domain.Book;
+import java.util.List;
 
-import java.util.Optional;
+public interface BookService {
+    List<Book> findAll();
 
-@Service
-public class BookService {
-    @Autowired
-    private BookRepository repository;
+    Book findOne(Long id);
 
-    /*
-    @param Book
-    @return true if success
-     */
-    public boolean addBook(Book book) {
-        if(repository.findBookByName(book.getName()).isPresent()) {
-            return false;
-        }
-        else {
-            repository.save(book);
-            return true;
-        }
-    }
+    List<Book> findByCategory(String category);
 
-    public Optional<Book> getBookByName(String name) {
-        return repository.findBookByName(name);
-    }
+    List<Book> blurrySearch(String title);
 }

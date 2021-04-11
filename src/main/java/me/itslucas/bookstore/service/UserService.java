@@ -1,74 +1,34 @@
 package me.itslucas.bookstore.service;
 
-import me.itslucas.bookstore.beans.Account;
-import me.itslucas.bookstore.repos.AccountRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import me.itslucas.bookstore.domain.User;
+import me.itslucas.bookstore.domain.UserBilling;
+import me.itslucas.bookstore.domain.UserPayment;
+import me.itslucas.bookstore.domain.UserShipping;
+import me.itslucas.bookstore.domain.security.PasswordResetToken;
+import me.itslucas.bookstore.domain.security.UserRole;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.Set;
 
-@Service
-public class UserService {
-    @Autowired
-    private AccountRepository accountRepository;
+public interface UserService {
+    PasswordResetToken getPasswordResetToken(final String token);
 
+    void createPasswordResetTokenForUser(final User user, final String token);
 
-    private boolean existsById(Long id) {
-        return accountRepository.existsById(id);
-    }
+    User findByUsername(String username);
 
-    public Account findById(Long id) throws Exception {
-        Optional<Account> account = accountRepository.findById(id);
-        if(!account.isPresent()) {
-            throw new Exception("Account not found");
-        }
-        else return account.get();
-    }
-    public boolean accountExistsByUserName(String userName) {
-        Account account = (Account) accountRepository.findByUserName(userName);
-        if(account==null) {
-            return false;
-        }
-        return true;
-    }
-    public Account findByUserName(String userName) throws Exception {
-        Account account = (Account) accountRepository.findByUserName(userName);
-        if(account==null) {
-            throw new Exception("Account not found");
-        }
-        else return account;
-    }
-    public List<Account> findAll() {
-        List<Account> contacts = new ArrayList<>();
-        accountRepository.findAll().forEach(contacts::add);
-        return contacts;
-    }
+    User findByEmail(String email);
 
-    public Account addNewAccount(Account account) {
-        return accountRepository.save(account);
-    }
+    User findById(Long id);
 
-    public void update(Account account) throws Exception{
-        if(!existsById(account.getId())) {
-            throw new Exception("No such account!");
-        }
-        else {
-            accountRepository.save(account);
-        }
-    }
+    User createUser(User user, Set<UserRole> userRoles) throws Exception;
 
-    public void deleteById(Long id){
-        accountRepository.deleteById(id);
-    }
+    User save(User user);
 
-    public Long count() {
-        return accountRepository.count();
-    }
+    void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user);
 
-    public int getBalanceById(Long id) {
-        return accountRepository.findById(id).get().getBalance();
-    }
+    void updateUserShipping(UserShipping userShipping, User user);
 
+    void setUserDefaultPayment(Long userPaymentId, User user);
+
+    void setUserDefaultShipping(Long userShippingId, User user);
 }
