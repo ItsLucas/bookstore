@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Foodie Customer Portal</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet">
+    <script type="text/javascript" src="../js/Data.js"></script>
+    <link rel="stylesheet" href="../css/Common.css" />
+    <link rel="stylesheet" href="../css/Data.css">
+
+</head>
+<body>
+<header>
+    <div class="content-wrapper">
+        <h1>Foodie</h1>
+        <nav>
+            <a href="index.php">Home</a>
+            <a href="index.php?page=products">Products</a>
+            <a href="login.html">Login</a>
+        </nav>
+        <div class="link-icons">
+            <a href="index.php?page=cart">
+                <i class="fas fa-shopping-cart"></i> <span>0</span>
+            </a>
+        </div>
+    </div>
+</header>
+<div class="Content">
+    <div class="Left" id="Left">
+        <ul>
+            <li class="Select">
+                <a href="#">账户信息</a>
+            </li>
+            <li >
+                <a href="#">我的订单</a>
+            </li>
+            <li>
+                <a href="#">我的白条</a>
+            </li>
+            <li>
+                <a href="#">我的券</a>
+            </li>
+
+            <li>
+                <a href="#">节日信息</a>
+            </li>
+            <li>
+                <a href="#">修改信息</a>
+            </li>
+        </ul>
+    </div>
+    <div class="Right" id="Right" >
+        <div class="Details Detail-4" style="display:block;">
+            <p class="AboutUS">账户信息</p>
+            <ul>
+                <li>
+                    <span class="Detail-4-Left">顾客ID</span>
+                    <td>xxx</td>
+                </li>
+                <li>
+                    <span class="Detail-4-Left">顾客名称</span>
+                    <td>xxx</td>
+                </li>
+                <li>
+                    <span class="Detail-4-Left">性别</span>
+                    <td>xxx</td>
+                </li>
+                <li>
+                    <span class="Detail-4-Left">出生日期</span>
+                    <td>xxx</td>
+                </li>
+                <li>
+                    <span class="Detail-4-Left">电话</span>
+                    <td>xxx</td>
+                </li>
+                <li>
+                    <span class="Detail-4-Left">微信</span>
+                    <td>xxx</td>
+                </li>
+                <li>
+                    <span class="Detail-4-Left">账户余额</span>
+                    <td>xxx</td>
+                </li>
+                <li>
+                    <span class="Detail-4-Left">福豆</span>
+                    <td>xxx</td>
+                </li>
+                <li>
+                    <span class="Detail-4-Left">白条状态</span>
+                    <td>xxx</td>
+                </li>
+                <li>
+                    <span class="Detail-4-Left">密码</span>
+                    <td>xxx</td>
+                </li>
+            </ul>
+        </div>
+        <div class="Details Detail-1" style="display:none;">
+            <p class="AboutUS">我的订单</p>
+            <ul>
+                <li>
+                    <table id="TopTR">
+                        <tr>
+                            <td>商品信息</td>
+                            <td>单价</td>
+                            <td>数量</td>
+                            <td>商品操作</td>
+                            <td>实付款</td>
+                            <td>交易状态</td>
+                            <td>付款方式</td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <a class="Delect2">
+                        <table id="TR_2">
+                            <tr>
+                                <td><img src="../img/imgcon1.jpg" /></td>
+                                <td>
+                                    <p style="text-decoration: line-through;color:gray;">￥999.00</p>
+                                    <p>￥799.00</p>
+                                </td>
+                                <td>
+                                    <p>1</p>
+                                </td>
+                                <td>
+                                    <p>申请售后</p>
+                                </td>
+                                <td>
+                                    <p>￥799.00</p>
+                                    <p style="color:gray;">（含运费：￥0.00）</p>
+                                </td>
+
+                                <td>
+                                    <p>交易成功</p>
+                                    <p>订单详情</p>
+                                </td>
+                                <td>
+                                    <p>xxx</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </a>
+                    <a class="Delect">
+                        <span><input type="checkbox" value="" /></span>
+                        <span>2018-01-15</span>
+                        <span>订单号：xxx</span>
+                        <span>券折扣：xxx</span>
+                        <span>节日折扣：xxx</span>
+                        <span>使用福豆：xxx</span>
+                        <span>会员折扣:xxx</span>
+                        <span>实付款:xxx</span>
+                        <img src="../img/垃圾箱.svg" style="width:30px;height:30px;position:absolute;right:15px;top:10px;" />
+
+                    </a>
+                </li>
+                <li>
+                    <a class="Delect2">
+                        <table id="TR_2">
+                            <tr>
+                                <td><img src="../img/imgcon1.jpg" /></td>
+                                <td>
+                                    <p style="text-decoration: line-through;color:gray;">￥999.00</p>
+                                    <p>￥799.00</p>
+                                </td>
+                                <td>
+                                    <p>1</p>
+                                </td>
+                                <td>
+                                    <p>申请售后</p>
+                                </td>
+                                <td>
+                                    <p>￥799.00</p>
+                                    <p style="color:gray;">（含运费：￥0.00）</p>
+                                </td>
+
+                                <td>
+                                    <p>交易成功</p>
+                                    <p>订单详情</p>
+                                </td>
+                                <td>
+                                    <p>xxx</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </a>
+                    </a>
+                    <a class="Delect">
+                        <span><input type="checkbox" value="" /></span>
+                        <span>2018-01-15</span>
+                        <span>订单号：xxx</span>
+                        <span>券折扣：xxx</span>
+                        <span>节日折扣：xxx</span>
+                        <span>使用福豆：xxx</span>
+                        <span>会员折扣:xxx</span>
+                        <span>实付款:xxx</span>
+                        <img src="../img/垃圾箱.svg" style="width:30px;height:30px;position:absolute;right:15px;top:10px;" />
+
+                    </a>
+                </li>
+                <li>
+                    <a class="Delect2">
+                        <table id="TR_2">
+                            <tr>
+                                <td><img src="../img/imgcon1.jpg" /></td>
+                                <td>
+                                    <p style="text-decoration: line-through;color:gray;">￥999.00</p>
+                                    <p>￥799.00</p>
+                                </td>
+                                <td>
+                                    <p>1</p>
+                                </td>
+                                <td>
+                                    <p>申请售后</p>
+                                </td>
+                                <td>
+                                    <p>￥799.00</p>
+                                    <p style="color:gray;">（含运费：￥0.00）</p>
+                                </td>
+
+                                <td>
+                                    <p>交易成功</p>
+                                    <p>订单详情</p>
+                                </td>
+                                <td>
+                                    <p>xxx</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </a>
+                    <a class="Delect">
+                        <span><input type="checkbox" value="" /></span>
+                        <span>2018-01-15</span>
+                        <span>订单号：xxx</span>
+                        <span>券折扣：xxx</span>
+                        <span>节日折扣：xxx</span>
+                        <span>使用福豆：xxx</span>
+                        <span>会员折扣:xxx</span>
+                        <span>实付款:xxx</span>
+                        <img src="../img/垃圾箱.svg" style="width:30px;height:30px;position:absolute;right:15px;top:10px;" />
+
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="Details Detail-4" style="display:none;">
+            <p class="AboutUS">我的白条</p>
+            <ul>
+
+                <li>
+                    <span class="Detail-4-Left">可用额度</span>
+                    <td>XXX</td>
+
+                </li>
+                <li>
+                    <span class="Detail-4-Left">最大额度</span>
+                    <td>XXX</td>
+                </li>
+                <li>
+                    <span class="Detail-4-Left">还款日期</span>
+                    <td>XXX</td>
+                </li>
+                <li>
+                    <span class="Detail-4-Left">本月最低还款</span>
+                    <td>XXX</td>
+                </li>
+                <li>
+                    <span class="Detail-4-Left">月账单</span>
+                    <td>XXX</td>
+                </li>
+                <li>
+                    <span class="Detail-4-Left">本月已还款</span>
+                    <td>XXX</td>
+                </li>
+            </ul>
+        </div>
+        <div class="Details Detail-3" style="display:none;">
+            <p class="AboutUS">我的券</p>
+
+            <ul id="Detail-3-UL">
+                <li class="QSelect">可用券</li>
+                <li class="NOQ">未用券</li>
+                <li>失效券</li>
+            </ul>
+            <a id="Detail-3-text">
+                <ul>
+                    <li style="display: block;">
+                        <table id="">
+                            <tr>
+                                <td>可用券名称</td>
+                                <td>面值</td>
+                                <td>数量</td>
+                                <td>有效期</td>
+                            </tr>
+                        </table>
+                    </li>
+                    <li style="display: none;">
+                        <table id="">
+                            <tr>
+                                <td>未用券名称</td>
+                                <td>面值</td>
+                                <td>数量</td>
+                                <td>有效期</td>
+                            </tr>
+                        </table>
+                    </li>
+                    <li style="display:none;">
+                        <table id="">
+                            <tr>
+                                <td>失效券名称</td>
+                                <td>面值</td>
+                                <td>数量</td>
+                                <td>有效期</td>
+                            </tr>
+                        </table>
+                    </li>
+                </ul>
+            </a>
+        </div>
+
+        <div class="Details Detail-5" style="display:none;">
+            <p class="AboutUS">购物狂欢节</p>
+            <table id="">
+                <tr style="background-color:rgba(0,0,0,0.1);" >
+                    <td style="width:100px;">节日名称</td>
+                    <td style="width:250px;">节日时段</td>
+                    <td style="width:250px;">折扣力度</td>
+                    <td>限制分区</td>
+                    <td>是否过期</td>
+                </tr>
+                <tr>
+                    <td style="width:100px;"><input style="width:100px;" class="Address" type="text" value="双12" /></td>
+                    <td style="width:250px;"><input style="width:250px;" class="Address" type="text" value="12.01-12.12" /></td>
+                    <td style="width:250px;"><input style="width:250px;" class="Address" type="text" value="9折" /></td>
+                    <td><input class="Address" type="text" value="酒水，生鲜，果干，进口肉类" /></td>
+                    <td><input class="Address" type="text" value="否" /></td>
+                </tr>
+            </table>
+
+
+        </div>
+        <div class="Details Detail-6" style="display:none;">
+            <p class="AboutUS">修改信息</p>
+            <ul>
+                <li>
+                    <span class="Detail-4-Left">顾客名称</span>
+                    <td><input type="text"/></td>
+                </li>
+                <li style="background-color: white;">
+                    <input class=" BaoCun" type="button" value="保存"/>
+                </li>
+                <li>
+                    <span class="Detail-4-Left"><b>*</b>性别</span>
+                    <input style="height:18px;width:18px;" type="radio" value="男" />男
+                    <input style="height:18px;width:18px;"type="radio" value="女" />女
+                    <input style="height:18px;width:18px;" type="radio" value="保密" />保密
+                </li>
+                <li style="background-color: white;">
+                    <input class=" BaoCun" type="button" value="保存"/>
+                </li>
+                <li>
+                    <span class="Detail-4-Left">生日</span>
+                    <input class="year" type="text" />年
+                    <input class="year" />月
+                    <input class="year" />日
+                </li>
+                <li style="background-color: white;">
+                    <input class=" BaoCun" type="button" value="保存"/>
+                </li>
+                <li>
+                    <span class="Detail-4-Left">电话</span>
+                    <input type="text" />
+                </li>
+                <li style="background-color: white;">
+                    <input class=" BaoCun" type="button" value="保存"/>
+                </li>
+                <li>
+                    <span class="Detail-4-Left">微信</span>
+                    <input type="text" />
+                </li>
+                <li style="background-color: white;">
+                    <input class=" BaoCun" type="button" value="保存"/>
+                </li>
+                <li>
+                    <span class="Detail-4-Left">密码</span>
+                    <input type="text" />
+                </li>
+                <li style="background-color: white;">
+                    <input class=" BaoCun" type="button" value="保存"/>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Foodie Customer Portal</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet"> 	</head>
+<body>
+<header>
+    <div class="content-wrapper">
+        <h1>Foodie</h1>
+        <nav>
+            <a href="index.php">Home</a>
+            <a href="index.php?page=products">Products</a>
+            <a href="login.html">Login</a>
+        </nav>
+        <div class="link-icons">
+            <a href="index.php?page=cart">
+                <i class="fas fa-shopping-cart"></i> <span>0</span>
+            </a>
+        </div>
+    </div>
+</header>
+<main>
+    <link href="style-reg.css" type="text/css" rel="stylesheet">
+<div class="register">
+    <h1>Register</h1>
+    <form action="register.php" method="post" autocomplete="off">
+        <label for="username">
+            <i class="fas fa-user"></i>
+        </label>
+        <input type="text" name="cid" placeholder="Client ID" id="cid" required>
+        <label for="cid">
+            <i class="fas fa-user"></i>
+        </label>
+        <input type="text" name="username" placeholder="Username" id="username" required>
+        <label for="password">
+            <i class="fas fa-lock"></i>
+        </label>
+        <input type="password" name="password" placeholder="Password" id="password" required>
+        <label for="email">
+            <i class="fas fa-envelope"></i>
+        </label>
+        <input type="email" name="email" placeholder="Email" id="email" required>
+        <label for="phone">
+            <i class="fas fa-phone"></i>
+        </label>
+        <input type="tel" name="phone" placeholder="Phone" id="phone" required>
+        <input type="submit" value="Register">
+    </form>
+</div>
+</main>
+<footer>
+    <div class="content-wrapper">
+        <p>&copy; 2020, Foodie Ltd.</p>
+    </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
