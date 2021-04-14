@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Index</title>
+    <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
+    <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet"> 	</head>
+<body>
+<header>
+    <div class="content-wrapper">
+        <h1>Foodie</h1>
+        <nav>
+            <a href="index">Home</a>
+            <a href="index">Products</a>
+            <a href="logout">Logout</a>
+        </nav>
+        <div class="link-icons">
+            <a href="vip"><p th:text="${name}"></a>
+            <a href="index">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="featured">
+        <h2>Foodie</h2>
+        <p>One Stop For All Foods You Need</p>
+    </div>
+    <div class="recentlyadded content-wrapper">
+        <h2>Recently Added Products</h2>
+        <div class="products">
+            <a href="" class="product">
+                <img src="" width="200" height="200" alt="">
+                <span class="name">123</span>
+                <span class="price">
+                &dollar;123
+            </span>
+            </a>
+        </div>
+    </div>
+</main>
+<footer>
+    <div class="content-wrapper">
+        <p>&copy; 2021, Foodie Ltd.</p>
+    </div>
+</footer>
+<script src="../static/js/script.js"></script>
+</body>
+</html>
