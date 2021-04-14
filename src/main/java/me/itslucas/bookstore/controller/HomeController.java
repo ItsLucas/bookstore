@@ -112,8 +112,22 @@ public class HomeController {
             String token = UUID.randomUUID().toString();
             userService.createPasswordResetTokenForUser(user, token);
             mav = new ModelAndView("login");
-        }
-        else mav = new ModelAndView("error");
+        } else mav = new ModelAndView("error");
         return mav;
+    }
+
+    @GetMapping("/product")
+    public String product(Model model) {
+        return "product";
+    }
+
+    @GetMapping("/producttest")
+    public String producttest(Model model) {
+        return "productdetail";
+    }
+
+    @GetMapping("/viptest")
+    public String viptest(Model model) {
+        return "vip";
     }
 }

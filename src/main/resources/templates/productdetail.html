@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Index</title>
+    <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
+    <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <div class="content-wrapper">
+        <h1>Foodie</h1>
+        <nav>
+            <a href="index">Home</a>
+            <a href="product">Products</a>
+            <a href="logout">Logout</a>
+        </nav>
+        <div class="link-icons">
+            <a href="vip"><p th:text="${name}"></a>
+            <a href="cart">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="product content-wrapper">
+        <img src="imgs/<?=$product['pname']?>.jpeg" width="500" height="500" alt="<?=$product['pname']?>">
+        <div>
+            <h1 class="name">testname</h1>
+            <span class="price">
+            &dollar;233
+        </span>
+            <div class="description">
+                net weight is: 233 g
+            </div>
+            <form th:action="@{/addcart}" method="post">
+                <input type="number" name="quantity" value="1" min="1" max="<?=$product['quantity']?>"
+                       placeholder="Quantity" required>
+                <input type="hidden" name="product_id" value="<?=$product['pid']?>">
+                <input type="submit" value="Add To Cart">
+                <style>
+                    #VIP {
+                        font-family: Arial, Helvetica, sans-serif;
+                        border-collapse: collapse;
+                        width: 100%;
+                        margin-top: 50px;
+                    }
+
+                    #VIP td, #VIP th {
+                        border: 1px solid #ddd;
+                        padding: 8px;
+                        width: 50%;
+                    }
+
+                    #VIP th {
+                        padding-top: 12px;
+                        padding-bottom: 12px;
+                        text-align: left;
+                        background-color: #4CAF50;
+                        color: white;
+                    }
+
+                    #VIP tr:nth-child(even) {
+                        background-color: #f2f2f2;
+                    }
+
+                    #VIP tr:hover {
+                        background-color: #ddd;
+                    }
+
+                </style>
+                <div class="content">
+                    <table id="VIP">
+                        <tr>
+                            <th>用户</th>
+                            <th>分数</th>
+                            <th>评价</th>
+                        </tr>
+                        <tr>
+                            <td>test</td>
+                            <td>100</td>
+                            <td>good</td>
+                        </tr>
+                    </table>
+                    <ul>
+                        <li style="background-color: white;">
+                            <a href="comments.php?pid=<?=$_GET['id']?>">Comment</a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</main>
+<footer>
+    <div class="content-wrapper">
+        <p>&copy; 2020, Foodie Ltd.</p>
+    </div>
+</footer>
+</body>
+</html>

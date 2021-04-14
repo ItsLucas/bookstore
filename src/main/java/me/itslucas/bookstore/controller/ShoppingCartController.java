@@ -11,6 +11,7 @@ import me.itslucas.bookstore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +20,6 @@ import java.security.Principal;
 import java.util.List;
 
 @Controller
-@RequestMapping("/shoppingCart")
 public class ShoppingCartController {
 
     @Autowired
@@ -34,6 +34,11 @@ public class ShoppingCartController {
     @Autowired
     private ShoppingCartService shoppingCartService;
 
+    @GetMapping("/cart")
+    public String shoppingCart(Model model) {
+        return "cart";
+    }
+    /*
     @RequestMapping("/cart")
     public String shoppingCart(Model model, Principal principal) {
         User user = userService.findByUsername(principal.getName());
@@ -87,4 +92,6 @@ public class ShoppingCartController {
 
         return "forward:/shoppingCart/cart";
     }
+    */
 }
+

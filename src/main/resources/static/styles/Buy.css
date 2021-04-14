@@ -1,0 +1,109 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+.Content {
+    padding: 20px;
+    width: 1300px;
+    margin: 0 auto;
+    height: 500px;
+    background-color: white;
+}
+
+.Content-top {
+    height: 80px;
+    background-color: #fff;
+}
+
+.Content .Detail-1 ul li.Li-1 {
+    margin-bottom: 20px;
+    border: 1px solid lightgray;
+
+}
+
+.Content .Detail-1 ul li {
+    /*background-color:rgba(0,0,0,0.01);*/
+    margin-bottom: 20px;
+
+}
+
+.Content .Detail-1 ul li #TopTR tr {
+    display: block;
+    background-color: rgba(0, 0, 0, 0.1);
+    /*margin-bottom: 20px;*/
+
+}
+
+.Content .Detail-1 ul li #TopTR tr td {
+    /*background-color:yellowgreen;*/
+    width: 220px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 20px;
+
+}
+
+.Content .Detail-1 ul li #TR_2 {
+    background-color: white;
+    position: relative;
+    /*height:130px;*/
+}
+
+.Content .Detail-1 ul li #TR_2 img {
+    width: 80px;
+    height: 80px;
+    top: 8px;
+    left: 280px;
+    position: absolute;
+    /*margin:5px 0px;*/
+}
+
+.Content .Detail-1 ul li a #TR_2 tr td {
+    /*background-color:yellowgreen;*/
+    width: 220px;
+    padding: 15px 0 0 0;
+    text-align: center;
+    line-height: 80px;
+
+}
+
+.Content .Detail-1 ul li .Delect2 {
+    background-color: white;
+    height: 100px;
+    border: 1px solid lightgray;
+    border-top: none;
+    display: block;
+
+
+}
+
+.BUTTOM a {
+    /*margin-top:2px;*/
+    background-color: white;
+    font-size: 20px;
+    /*border:1px solid lightgray;*/
+    padding: 3px 10px 8px 10px;
+    background-color: #D3D3D3;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.Jian-Min {
+    color: gray;
+}
+
+.Jian-Max {
+    color: black;
+}
+
+.info {
+
+}
+
+.info span {
+    /*background-color: #FF0000;*/
+}
+
+
+
