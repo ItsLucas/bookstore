@@ -20,11 +20,11 @@ public class OrderServiceImpl implements OrderService {
     private CartItemService cartItemService;
 
     public synchronized Order createOrder(ShoppingCart shoppingCart,
-                      ShippingAddress shippingAddress,
-                      BillingAddress billingAddress,
-                      Payment payment,
-                      String shippingMehod,
-                      User user) {
+                                          ShippingAddress shippingAddress,
+                                          BillingAddress billingAddress,
+                                          Payment payment,
+                                          String shippingMehod,
+                                          User user) {
         Order order = new Order();
         order.setBillingAddress(billingAddress);
         order.setOrderStatus("created");
@@ -32,9 +32,9 @@ public class OrderServiceImpl implements OrderService {
         order.setShippingAddress(shippingAddress);
         order.setShippingMethod(shippingMehod);
 
-        List<CartItem>  cartItemList = cartItemService.findByShoppingCart(shoppingCart);
+        List<CartItem> cartItemList = cartItemService.findByShoppingCart(shoppingCart);
 
-        for(CartItem cartItem : cartItemList) {
+        for (CartItem cartItem : cartItemList) {
             Book book = cartItem.getBook();
             cartItem.setOrder(order);
             book.setInStockNumber(book.getInStockNumber() - cartItem.getQty());

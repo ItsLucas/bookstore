@@ -9,82 +9,82 @@ import java.util.List;
 @Entity
 public class CartItem {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	private int qty;
-	private BigDecimal subtotal;
-	
-	@OneToOne
-	private Book book;
-	
-	@OneToMany(mappedBy = "cartItem")
-	@JsonIgnore
-	private List<BookToCartItem> bookToCartItemList;
-	
-	@ManyToOne
-	@JoinColumn(name="shopping_cart_id")
-	private ShoppingCart shoppingCart;
-	
-	@ManyToOne
-	@JoinColumn(name="order_id")
-	private Order order;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private int qty;
+    private BigDecimal subtotal;
 
-	public Long getId() {
-		return id;
-	}
+    @OneToOne
+    private Book book;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @OneToMany(mappedBy = "cartItem")
+    @JsonIgnore
+    private List<BookToCartItem> bookToCartItemList;
 
-	public int getQty() {
-		return qty;
-	}
+    @ManyToOne
+    @JoinColumn(name = "shopping_cart_id")
+    private ShoppingCart shoppingCart;
 
-	public void setQty(int qty) {
-		this.qty = qty;
-	}
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
 
-	public BigDecimal getSubtotal() {
-		return subtotal;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setSubtotal(BigDecimal subtotal) {
-		this.subtotal = subtotal;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Book getBook() {
-		return book;
-	}
+    public int getQty() {
+        return qty;
+    }
 
-	public void setBook(Book book) {
-		this.book = book;
-	}
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
 
-	public List<BookToCartItem> getBookToCartItemList() {
-		return bookToCartItemList;
-	}
+    public BigDecimal getSubtotal() {
+        return subtotal;
+    }
 
-	public void setBookToCartItemList(List<BookToCartItem> bookToCartItemList) {
-		this.bookToCartItemList = bookToCartItemList;
-	}
+    public void setSubtotal(BigDecimal subtotal) {
+        this.subtotal = subtotal;
+    }
 
-	public ShoppingCart getShoppingCart() {
-		return shoppingCart;
-	}
+    public Book getBook() {
+        return book;
+    }
 
-	public void setShoppingCart(ShoppingCart shoppingCart) {
-		this.shoppingCart = shoppingCart;
-	}
+    public void setBook(Book book) {
+        this.book = book;
+    }
 
-	public Order getOrder() {
-		return order;
-	}
+    public List<BookToCartItem> getBookToCartItemList() {
+        return bookToCartItemList;
+    }
 
-	public void setOrder(Order order) {
-		this.order = order;
-	}
-	
-	
+    public void setBookToCartItemList(List<BookToCartItem> bookToCartItemList) {
+        this.bookToCartItemList = bookToCartItemList;
+    }
+
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+
 }

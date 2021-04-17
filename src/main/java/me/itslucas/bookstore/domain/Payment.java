@@ -5,102 +5,102 @@ import javax.persistence.*;
 @Entity
 public class Payment {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	private String type;
-	private String cardName;
-	private String cardNumber;
-	private int expiryMonth;
-	private int expiryYear;
-	private int cvc;
-	private String holderName;
-	
-	@OneToOne
-	private Order order;
-	
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "userPayment")
-	private UserBilling userBilling;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String type;
+    private String cardName;
+    private String cardNumber;
+    private int expiryMonth;
+    private int expiryYear;
+    private int cvc;
+    private String holderName;
 
-	public Long getId() {
-		return id;
-	}
+    @OneToOne
+    private Order order;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "userPayment")
+    private UserBilling userBilling;
 
-	public String getType() {
-		return type;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getCardName() {
-		return cardName;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public void setCardName(String cardName) {
-		this.cardName = cardName;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public String getCardNumber() {
-		return cardNumber;
-	}
+    public String getCardName() {
+        return cardName;
+    }
 
-	public void setCardNumber(String cardNumber) {
-		this.cardNumber = cardNumber;
-	}
+    public void setCardName(String cardName) {
+        this.cardName = cardName;
+    }
 
-	public int getExpiryMonth() {
-		return expiryMonth;
-	}
+    public String getCardNumber() {
+        return cardNumber;
+    }
 
-	public void setExpiryMonth(int expiryMonth) {
-		this.expiryMonth = expiryMonth;
-	}
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
+    }
 
-	public int getExpiryYear() {
-		return expiryYear;
-	}
+    public int getExpiryMonth() {
+        return expiryMonth;
+    }
 
-	public void setExpiryYear(int expiryYear) {
-		this.expiryYear = expiryYear;
-	}
+    public void setExpiryMonth(int expiryMonth) {
+        this.expiryMonth = expiryMonth;
+    }
 
-	public int getCvc() {
-		return cvc;
-	}
+    public int getExpiryYear() {
+        return expiryYear;
+    }
 
-	public void setCvc(int cvc) {
-		this.cvc = cvc;
-	}
+    public void setExpiryYear(int expiryYear) {
+        this.expiryYear = expiryYear;
+    }
 
-	public String getHolderName() {
-		return holderName;
-	}
+    public int getCvc() {
+        return cvc;
+    }
 
-	public void setHolderName(String holderName) {
-		this.holderName = holderName;
-	}
+    public void setCvc(int cvc) {
+        this.cvc = cvc;
+    }
 
-	public Order getOrder() {
-		return order;
-	}
+    public String getHolderName() {
+        return holderName;
+    }
 
-	public void setOrder(Order order) {
-		this.order = order;
-	}
+    public void setHolderName(String holderName) {
+        this.holderName = holderName;
+    }
 
-	public UserBilling getUserBilling() {
-		return userBilling;
-	}
+    public Order getOrder() {
+        return order;
+    }
 
-	public void setUserBilling(UserBilling userBilling) {
-		this.userBilling = userBilling;
-	}
-	
-	
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public UserBilling getUserBilling() {
+        return userBilling;
+    }
+
+    public void setUserBilling(UserBilling userBilling) {
+        this.userBilling = userBilling;
+    }
+
+
 }

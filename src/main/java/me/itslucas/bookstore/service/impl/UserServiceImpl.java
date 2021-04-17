@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,7 @@ import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private  static final Logger LOG = LoggerFactory.getLogger(UserService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     private UserRepository userRepository;
@@ -62,10 +61,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
 //    @Transactional
-    public User createUser(User user, Set<UserRole> userRoles){
+    public User createUser(User user, Set<UserRole> userRoles) {
         User localUser = userRepository.findByUsername(user.getUsername());
 
-        if(localUser != null) {
+        if (localUser != null) {
             LOG.info("user {} already exists. Nothing will be done.", user.getUsername());
         } else {
             for (UserRole ur : userRoles) {
@@ -114,8 +113,8 @@ public class UserServiceImpl implements UserService {
     public void setUserDefaultPayment(Long userPaymentId, User user) {
         List<UserPayment> userPaymentList = (List<UserPayment>) userPaymentRepository.findAll();
 
-        for(UserPayment userPayment : userPaymentList) {
-            if(userPayment.getId() == userPaymentId) {
+        for (UserPayment userPayment : userPaymentList) {
+            if (userPayment.getId() == userPaymentId) {
                 userPayment.setDefaultPayment(true);
                 userPaymentRepository.save(userPayment);
             } else {
@@ -129,8 +128,8 @@ public class UserServiceImpl implements UserService {
     public void setUserDefaultShipping(Long userShippingId, User user) {
         List<UserShipping> userShippingList = (List<UserShipping>) userShippingRepository.findAll();
 
-        for(UserShipping userShipping : userShippingList) {
-            if(userShipping.getId().equals(userShippingId)) {
+        for (UserShipping userShipping : userShippingList) {
+            if (userShipping.getId().equals(userShippingId)) {
                 userShipping.setUserShippingDefault(true);
                 userShippingRepository.save(userShipping);
             } else {

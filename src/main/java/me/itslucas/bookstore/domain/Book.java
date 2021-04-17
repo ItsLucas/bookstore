@@ -9,178 +9,178 @@ import java.util.List;
 @Entity
 public class Book {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
-	private String title;
-	private String author;
-	private String publisher;
-	private String publicationDate;
-	private String language;
-	private String category;
-	private int numberOfPages;
-	private String format;
-	private int isbn;
-	private double shippingWeight;
-	private double listPrice;
-	private double ourPrice;
-	private boolean active=true;
-	
-	@Column(columnDefinition="text")
-	private String description;
-	private int inStockNumber;
-	
-	@Transient
-	private MultipartFile bookImage;
-	
-	
-	@OneToMany(mappedBy = "book")
-	@JsonIgnore
-	private List<BookToCartItem> bookToCartItemList;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String title;
+    private String author;
+    private String publisher;
+    private String publicationDate;
+    private String language;
+    private String category;
+    private int numberOfPages;
+    private String format;
+    private int isbn;
+    private double shippingWeight;
+    private double listPrice;
+    private double ourPrice;
+    private boolean active = true;
 
-	public Long getId() {
-		return id;
-	}
+    @Column(columnDefinition = "text")
+    private String description;
+    private int inStockNumber;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @Transient
+    private MultipartFile bookImage;
 
-	public String getTitle() {
-		return title;
-	}
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    @OneToMany(mappedBy = "book")
+    @JsonIgnore
+    private List<BookToCartItem> bookToCartItemList;
 
-	public String getAuthor() {
-		return author;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setAuthor(String author) {
-		this.author = author;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getPublisher() {
-		return publisher;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setPublisher(String publisher) {
-		this.publisher = publisher;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public String getPublicationDate() {
-		return publicationDate;
-	}
+    public String getAuthor() {
+        return author;
+    }
 
-	public void setPublicationDate(String publicationDate) {
-		this.publicationDate = publicationDate;
-	}
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 
-	public String getLanguage() {
-		return language;
-	}
+    public String getPublisher() {
+        return publisher;
+    }
 
-	public void setLanguage(String language) {
-		this.language = language;
-	}
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
 
-	public String getCategory() {
-		return category;
-	}
+    public String getPublicationDate() {
+        return publicationDate;
+    }
 
-	public void setCategory(String category) {
-		this.category = category;
-	}
+    public void setPublicationDate(String publicationDate) {
+        this.publicationDate = publicationDate;
+    }
 
-	public int getNumberOfPages() {
-		return numberOfPages;
-	}
+    public String getLanguage() {
+        return language;
+    }
 
-	public void setNumberOfPages(int numberOfPages) {
-		this.numberOfPages = numberOfPages;
-	}
+    public void setLanguage(String language) {
+        this.language = language;
+    }
 
-	public String getFormat() {
-		return format;
-	}
+    public String getCategory() {
+        return category;
+    }
 
-	public void setFormat(String format) {
-		this.format = format;
-	}
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
-	public int getIsbn() {
-		return isbn;
-	}
+    public int getNumberOfPages() {
+        return numberOfPages;
+    }
 
-	public void setIsbn(int isbn) {
-		this.isbn = isbn;
-	}
+    public void setNumberOfPages(int numberOfPages) {
+        this.numberOfPages = numberOfPages;
+    }
 
-	public double getShippingWeight() {
-		return shippingWeight;
-	}
+    public String getFormat() {
+        return format;
+    }
 
-	public void setShippingWeight(double shippingWeight) {
-		this.shippingWeight = shippingWeight;
-	}
+    public void setFormat(String format) {
+        this.format = format;
+    }
 
-	public double getListPrice() {
-		return listPrice;
-	}
+    public int getIsbn() {
+        return isbn;
+    }
 
-	public void setListPrice(double listPrice) {
-		this.listPrice = listPrice;
-	}
+    public void setIsbn(int isbn) {
+        this.isbn = isbn;
+    }
 
-	public double getOurPrice() {
-		return ourPrice;
-	}
+    public double getShippingWeight() {
+        return shippingWeight;
+    }
 
-	public void setOurPrice(double ourPrice) {
-		this.ourPrice = ourPrice;
-	}
+    public void setShippingWeight(double shippingWeight) {
+        this.shippingWeight = shippingWeight;
+    }
 
-	public boolean isActive() {
-		return active;
-	}
+    public double getListPrice() {
+        return listPrice;
+    }
 
-	public void setActive(boolean active) {
-		this.active = active;
-	}
+    public void setListPrice(double listPrice) {
+        this.listPrice = listPrice;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public double getOurPrice() {
+        return ourPrice;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setOurPrice(double ourPrice) {
+        this.ourPrice = ourPrice;
+    }
 
-	public int getInStockNumber() {
-		return inStockNumber;
-	}
+    public boolean isActive() {
+        return active;
+    }
 
-	public void setInStockNumber(int inStockNumber) {
-		this.inStockNumber = inStockNumber;
-	}
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
-	public MultipartFile getBookImage() {
-		return bookImage;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setBookImage(MultipartFile bookImage) {
-		this.bookImage = bookImage;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public List<BookToCartItem> getBookToCartItemList() {
-		return bookToCartItemList;
-	}
+    public int getInStockNumber() {
+        return inStockNumber;
+    }
 
-	public void setBookToCartItemList(List<BookToCartItem> bookToCartItemList) {
-		this.bookToCartItemList = bookToCartItemList;
-	}
-	
-	
+    public void setInStockNumber(int inStockNumber) {
+        this.inStockNumber = inStockNumber;
+    }
+
+    public MultipartFile getBookImage() {
+        return bookImage;
+    }
+
+    public void setBookImage(MultipartFile bookImage) {
+        this.bookImage = bookImage;
+    }
+
+    public List<BookToCartItem> getBookToCartItemList() {
+        return bookToCartItemList;
+    }
+
+    public void setBookToCartItemList(List<BookToCartItem> bookToCartItemList) {
+        this.bookToCartItemList = bookToCartItemList;
+    }
+
+
 }
