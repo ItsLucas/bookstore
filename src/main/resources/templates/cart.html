@@ -29,16 +29,21 @@
             <h1>Shopping Cart</h1>
             <form th:action="@{/addcart}" method="post">
                 <table>
-                    <a th:each="cartItem : ${cartItems}"></a>
                     <thead>
                         <tr>
-                            <td th:href="@{/productdetail(id=${cartItem.book.id})}" th:text="${cartItem.book.title}" colspan="2">Product</td>
-                            <td th:text="${cartItem.book.listPrice}">Price</td>
-                            <td th:text="${cartItem.qty}">Quantity</td>
-                            <td th:text="${cartItem.subtotal}">Total</td>
+                            <td colspan="2">Product</td>
+                            <td>Price</td>
+                            <td>Quantity</td>
+                            <td>Total</td>
                         </tr>
                     </thead>
                     <tbody>
+                        <tr th:each="cartItem : ${cartItems}">
+                            <td th:href="@{/productdetail(id=${cartItem.book.id})}" th:text="${cartItem.book.title}"></td>
+                            <td th:text="${cartItem.book.listPrice}"></td>
+                            <td th:text="${cartItem.qty}"></td>
+                            <td th:text="${cartItem.subtotal}"></td>
+                        </tr>
                         <tr>
                             <td colspan="5" style="text-align:center;">You have no products added in your Shopping Cart</td>
                         </tr>
