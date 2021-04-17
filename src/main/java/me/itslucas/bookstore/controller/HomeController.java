@@ -1,19 +1,12 @@
 package me.itslucas.bookstore.controller;
 
 import me.itslucas.bookstore.domain.*;
-import me.itslucas.bookstore.domain.security.PasswordResetToken;
 import me.itslucas.bookstore.domain.security.Role;
 import me.itslucas.bookstore.domain.security.UserRole;
 import me.itslucas.bookstore.service.*;
 import me.itslucas.bookstore.service.impl.UserSecurityService;
-import me.itslucas.bookstore.utility.SecurityUtility;
-import me.itslucas.bookstore.utility.USConstants;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.websocket.server.PathParam;
-import java.security.Principal;
 import java.util.*;
 import java.util.logging.Logger;
 
@@ -62,6 +53,13 @@ public class HomeController {
 
     @GetMapping("/index")
     public String index(Model model) {
+        List<Book> books = bookService.findAll();
+        int start = books.size()-1;
+        ArrayList<Book> dispBooks = new ArrayList<>();
+        for(int i = start; i >=0 && i>= start-3; i--) {
+            dispBooks.add(books.get(i));
+        }
+        model.addAttribute("books",dispBooks);
         return "index";
     }
 
@@ -118,11 +116,14 @@ public class HomeController {
 
     @GetMapping("/product")
     public String product(Model model) {
+        model.addAttribute("books",bookService.findAll());
         return "product";
     }
 
-    @GetMapping("/producttest")
-    public String producttest(Model model) {
+    @GetMapping("/productdetail")
+    public String producttest(Model model,@RequestParam(name="id")Long id) {
+        Book book = bookService.findOne(id);
+        model.addAttribute("book",book);
         return "productdetail";
     }
 
@@ -130,4 +131,6 @@ public class HomeController {
     public String viptest(Model model) {
         return "vip";
     }
+
+
 }

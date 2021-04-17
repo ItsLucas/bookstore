@@ -31,6 +31,9 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findById(id).get();
     }
 
+    public void save(Book book) {
+        bookRepository.save(book);
+    }
     public List<Book> findByCategory(String category) {
         List<Book> bookList = bookRepository.findByCategory(category);
 

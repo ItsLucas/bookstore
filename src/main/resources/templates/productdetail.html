@@ -25,19 +25,19 @@
 </header>
 <main>
     <div class="product content-wrapper">
-        <img src="imgs/<?=$product['pname']?>.jpeg" width="500" height="500" alt="<?=$product['pname']?>">
+        <img th:src="@{/imgs/{num}.jpg(num=${book.id})}" width="500" height="500" alt="">
         <div>
-            <h1 class="name">testname</h1>
-            <span class="price">
+            <h1 class="name" th:text="${book.title}">testname</h1>
+            <span class="price" th:text="${book.listPrice}">
             &dollar;233
         </span>
-            <div class="description">
+            <div class="description" th:text="${book.description}">
                 net weight is: 233 g
             </div>
             <form th:action="@{/addcart}" method="post">
                 <input type="number" name="quantity" value="1" min="1" max="<?=$product['quantity']?>"
                        placeholder="Quantity" required>
-                <input type="hidden" name="product_id" value="<?=$product['pid']?>">
+                <input type="hidden" name="product_id" th:value="${book.id}">
                 <input type="submit" value="Add To Cart">
                 <style>
                     #VIP {

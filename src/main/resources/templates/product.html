@@ -27,18 +27,14 @@
 
     <div class="products content-wrapper">
         <h1>Products</h1>
-        <p>3 Products</p>
         <div class="products-wrapper">
-            <a href="index.php?page=product&id=<?=$product['pid']?>" class="product">
-                <img src="imgs/<?=$product['pname']?>.jpeg" width="200" height="200" alt="<?=$product['pname']?>">
-                <span class="name">testname</span>
-                <span class="price">
-                &dollar;233 </span>
-            </a>
-        </div>
-        <div class="buttons">
-            <a href="index.php?page=products&p=<?=$current_page-1?>">Prev</a>
-            <a href="index.php?page=products&p=<?=$current_page+1?>">Next</a>
+            <a th:each="book : ${books}">
+                <a th:href="@{/productdetail(id=${book.id})}" class="product">
+                    <img th:src="@{/imgs/{num}.jpg(num=${book.id})}" width="200" height="200" alt="">
+                    <span class="name" th:text="${book.title}">123</span>
+                    <span class="price" th:text="${book.listPrice}">
+            </span>
+                </a></a>
         </div>
     </div>
 </main>
