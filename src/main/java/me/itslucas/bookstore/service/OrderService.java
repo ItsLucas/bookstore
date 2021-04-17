@@ -8,7 +8,7 @@ public interface OrderService {
                       BillingAddress billingAddress,
                       Payment payment,
                       String shippingMehod,
-                      User user);
+                      UserOld user);
 
     Order findOne(Long id);
 }

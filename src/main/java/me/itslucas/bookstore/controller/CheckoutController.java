@@ -10,12 +10,9 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class CheckoutController {
 
-    private ShippingAddress shippingAddress = new ShippingAddress();
-    private BillingAddress billingAddress = new BillingAddress();
-    private Payment payment = new Payment();
-
-    @Autowired
-    private UserService userService;
+    private final ShippingAddress shippingAddress = new ShippingAddress();
+    private final BillingAddress billingAddress = new BillingAddress();
+    private final Payment payment = new Payment();
 
     @Autowired
     private CartItemService cartItemService;
@@ -27,13 +24,7 @@ public class CheckoutController {
     private ShippingAddressService shippingAddressService;
 
     @Autowired
-    private BillingAddressService billingAddressService;
-
-    @Autowired
     private PaymentService paymentService;
-
-    @Autowired
-    private UserShippingService userShippingService;
 
     @Autowired
     private UserPaymentService userPaymentService;

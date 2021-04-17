@@ -1,6 +1,6 @@
 package me.itslucas.bookstore.repository;
 
-import me.itslucas.bookstore.domain.User;
+import me.itslucas.bookstore.domain.UserOld;
 import me.itslucas.bookstore.domain.security.PasswordResetToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 public interface PasswordResetTokenRepository extends JpaRepository<PasswordResetToken, Long> {
     PasswordResetToken findByToken(String token);
 
-    PasswordResetToken findByUser(User user);
+    PasswordResetToken findByUser(UserOld user);
 
     Stream<PasswordResetToken> findAllByExpiryDateLessThan(Date now);
 

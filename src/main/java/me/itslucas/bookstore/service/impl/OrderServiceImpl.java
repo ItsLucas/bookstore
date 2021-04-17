@@ -24,7 +24,7 @@ public class OrderServiceImpl implements OrderService {
                                           BillingAddress billingAddress,
                                           Payment payment,
                                           String shippingMehod,
-                                          User user) {
+                                          UserOld user) {
         Order order = new Order();
         order.setBillingAddress(billingAddress);
         order.setOrderStatus("created");
