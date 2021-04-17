@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>Index</title>
-    <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" th:href="@{/styles/style.css}" type="text/css">
     <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet">
 </head>
 <body>
@@ -25,7 +25,7 @@
 </header>
 <main>
     <div class="product content-wrapper">
-        <img th:src="@{/imgs/{num}.jpg(num=${book.id})}" width="500" height="500" alt="">
+        <img alt="" height="500" th:src="@{/imgs/{num}.jpg(num=${book.id})}" width="500">
         <div>
             <h1 class="name" th:text="${book.title}">testname</h1>
             <span class="price" th:text="${book.listPrice}">
@@ -34,10 +34,10 @@
             <div class="description" th:text="${book.description}">
                 net weight is: 233 g
             </div>
-            <form th:action="@{/addcart}" method="post">
-                <input type="number" name="quantity" value="1" min="1" max="<?=$product['quantity']?>"
-                       placeholder="Quantity" required>
-                <input type="hidden" name="product_id" th:value="${book.id}">
+            <form method="post" th:action="@{/addcart}">
+                <input max="<?=$product['quantity']?>" min="1" name="quantity" placeholder="Quantity" required
+                       type="number" value="1">
+                <input name="product_id" th:value="${book.id}" type="hidden">
                 <input type="submit" value="Add To Cart">
                 <style>
                     #VIP {

@@ -4,122 +4,122 @@ import javax.persistence.*;
 
 @Entity
 public class UserShipping {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	private String userShippingName;
-	private String userShippingStreet1;
-	private String userShippingStreet2;
-	private String userShippingCity;
-	private String userShippingState;
-	private String userShippingCountry;
-	private String userShippingZipcode;
-	private boolean userShippingDefault;
-	
-	
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String userShippingName;
+    private String userShippingStreet1;
+    private String userShippingStreet2;
+    private String userShippingCity;
+    private String userShippingState;
+    private String userShippingCountry;
+    private String userShippingZipcode;
+    private boolean userShippingDefault;
 
 
-	public Long getId() {
-		return id;
-	}
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Long getId() {
+        return id;
+    }
 
 
-	public String getUserShippingName() {
-		return userShippingName;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
 
-	public void setUserShippingName(String userShippingName) {
-		this.userShippingName = userShippingName;
-	}
+    public String getUserShippingName() {
+        return userShippingName;
+    }
 
 
-	public String getUserShippingStreet1() {
-		return userShippingStreet1;
-	}
+    public void setUserShippingName(String userShippingName) {
+        this.userShippingName = userShippingName;
+    }
 
 
-	public void setUserShippingStreet1(String userShippingStreet1) {
-		this.userShippingStreet1 = userShippingStreet1;
-	}
+    public String getUserShippingStreet1() {
+        return userShippingStreet1;
+    }
 
 
-	public String getUserShippingStreet2() {
-		return userShippingStreet2;
-	}
+    public void setUserShippingStreet1(String userShippingStreet1) {
+        this.userShippingStreet1 = userShippingStreet1;
+    }
 
 
-	public void setUserShippingStreet2(String userShippingStreet2) {
-		this.userShippingStreet2 = userShippingStreet2;
-	}
+    public String getUserShippingStreet2() {
+        return userShippingStreet2;
+    }
 
 
-	public String getUserShippingCity() {
-		return userShippingCity;
-	}
+    public void setUserShippingStreet2(String userShippingStreet2) {
+        this.userShippingStreet2 = userShippingStreet2;
+    }
 
 
-	public void setUserShippingCity(String userShippingCity) {
-		this.userShippingCity = userShippingCity;
-	}
+    public String getUserShippingCity() {
+        return userShippingCity;
+    }
 
 
-	public String getUserShippingState() {
-		return userShippingState;
-	}
+    public void setUserShippingCity(String userShippingCity) {
+        this.userShippingCity = userShippingCity;
+    }
 
 
-	public void setUserShippingState(String userShippingState) {
-		this.userShippingState = userShippingState;
-	}
+    public String getUserShippingState() {
+        return userShippingState;
+    }
 
 
-	public String getUserShippingCountry() {
-		return userShippingCountry;
-	}
+    public void setUserShippingState(String userShippingState) {
+        this.userShippingState = userShippingState;
+    }
 
 
-	public void setUserShippingCountry(String userShippingCountry) {
-		this.userShippingCountry = userShippingCountry;
-	}
+    public String getUserShippingCountry() {
+        return userShippingCountry;
+    }
 
 
-	public String getUserShippingZipcode() {
-		return userShippingZipcode;
-	}
+    public void setUserShippingCountry(String userShippingCountry) {
+        this.userShippingCountry = userShippingCountry;
+    }
 
 
-	public void setUserShippingZipcode(String userShippingZipcode) {
-		this.userShippingZipcode = userShippingZipcode;
-	}
+    public String getUserShippingZipcode() {
+        return userShippingZipcode;
+    }
 
 
-	public User getUser() {
-		return user;
-	}
+    public void setUserShippingZipcode(String userShippingZipcode) {
+        this.userShippingZipcode = userShippingZipcode;
+    }
 
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    public User getUser() {
+        return user;
+    }
 
 
-	public boolean isUserShippingDefault() {
-		return userShippingDefault;
-	}
+    public void setUser(User user) {
+        this.user = user;
+    }
 
 
-	public void setUserShippingDefault(boolean userShippingDefault) {
-		this.userShippingDefault = userShippingDefault;
-	}
-	
-	
+    public boolean isUserShippingDefault() {
+        return userShippingDefault;
+    }
+
+
+    public void setUserShippingDefault(boolean userShippingDefault) {
+        this.userShippingDefault = userShippingDefault;
+    }
+
+
 }

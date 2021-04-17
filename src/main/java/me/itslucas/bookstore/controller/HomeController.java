@@ -1,6 +1,8 @@
 package me.itslucas.bookstore.controller;
 
-import me.itslucas.bookstore.domain.*;
+import me.itslucas.bookstore.domain.Book;
+import me.itslucas.bookstore.domain.Login;
+import me.itslucas.bookstore.domain.User;
 import me.itslucas.bookstore.domain.security.Role;
 import me.itslucas.bookstore.domain.security.UserRole;
 import me.itslucas.bookstore.service.*;
@@ -54,12 +56,12 @@ public class HomeController {
     @GetMapping("/index")
     public String index(Model model) {
         List<Book> books = bookService.findAll();
-        int start = books.size()-1;
+        int start = books.size() - 1;
         ArrayList<Book> dispBooks = new ArrayList<>();
-        for(int i = start; i >=0 && i>= start-3; i--) {
+        for (int i = start; i >= 0 && i >= start - 3; i--) {
             dispBooks.add(books.get(i));
         }
-        model.addAttribute("books",dispBooks);
+        model.addAttribute("books", dispBooks);
         return "index";
     }
 
@@ -67,18 +69,18 @@ public class HomeController {
     public String logout(Model model) {
         return "login";
     }
+
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ModelAndView authenticate(HttpServletRequest request,
                                      HttpServletResponse response,
                                      @ModelAttribute("login") Login login,
-                                     Model model){
+                                     Model model) {
         ModelAndView mav = null;
         Logger.getLogger("test").info("111");
         User user = userService.findByUsername(login.getUsername());
-        if(user==null) {
-            mav=new ModelAndView("error");
-        }
-        else if (user.getPassword().equals(login.getPassword())) {
+        if (user == null) {
+            mav = new ModelAndView("error");
+        } else if (user.getPassword().equals(login.getPassword())) {
             mav = new ModelAndView("index");
             mav.addObject("name", user.getUsername());
         }
@@ -87,14 +89,14 @@ public class HomeController {
     }
 
     @PostMapping("/registercheck")
-    public ModelAndView reg(@RequestParam(name="username", required=false, defaultValue="World") String name,
-                               @RequestParam(name="password", required=false, defaultValue="World") String pass,
-                               @RequestParam(name="email", required=false, defaultValue="World") String email,
-                               @RequestParam(name="phone", required=false, defaultValue="World") String phone,
-                               Model model) throws Exception {
+    public ModelAndView reg(@RequestParam(name = "username", required = false, defaultValue = "World") String name,
+                            @RequestParam(name = "password", required = false, defaultValue = "World") String pass,
+                            @RequestParam(name = "email", required = false, defaultValue = "World") String email,
+                            @RequestParam(name = "phone", required = false, defaultValue = "World") String phone,
+                            Model model) throws Exception {
         ModelAndView mav = null;
         UserDetails ud = userSecurityService.loadUserByUsername(name);
-        if(null == ud) {
+        if (null == ud) {
             User user = new User();
             user.setUsername(name);
             user.setPassword(pass);
@@ -116,14 +118,14 @@ public class HomeController {
 
     @GetMapping("/product")
     public String product(Model model) {
-        model.addAttribute("books",bookService.findAll());
+        model.addAttribute("books", bookService.findAll());
         return "product";
     }
 
     @GetMapping("/productdetail")
-    public String producttest(Model model,@RequestParam(name="id")Long id) {
+    public String producttest(Model model, @RequestParam(name = "id") Long id) {
         Book book = bookService.findOne(id);
-        model.addAttribute("book",book);
+        model.addAttribute("book", book);
         return "productdetail";
     }
 

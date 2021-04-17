@@ -3,8 +3,9 @@
 <head>
     <meta charset="utf-8">
     <title>Foodie Customer Portal</title>
-    <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
-    <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet"> 	</head>
+    <link rel="stylesheet" th:href="@{/styles/style.css}" type="text/css">
+    <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet">
+</head>
 <body>
 <header>
     <div class="content-wrapper">
@@ -21,30 +22,30 @@
         </div>
     </div>
 </header>
-<link th:href="@{/styles/style-reg.css}" type="text/css" rel="stylesheet">
+<link rel="stylesheet" th:href="@{/styles/style-reg.css}" type="text/css">
 <div class="register">
     <h1>Register</h1>
-    <form th:action="@{/registercheck}" method="post" autocomplete="off">
+    <form autocomplete="off" method="post" th:action="@{/registercheck}">
         <label for="username">
             <i class="fas fa-user"></i>
         </label>
-        <input type="text" name="cid" placeholder="Client ID" id="cid" required>
+        <input id="cid" name="cid" placeholder="Client ID" required type="text">
         <label for="cid">
             <i class="fas fa-user"></i>
         </label>
-        <input type="text" name="username" placeholder="Username" id="username" required>
+        <input id="username" name="username" placeholder="Username" required type="text">
         <label for="password">
             <i class="fas fa-lock"></i>
         </label>
-        <input type="password" name="password" placeholder="Password" id="password" required>
+        <input id="password" name="password" placeholder="Password" required type="password">
         <label for="email">
             <i class="fas fa-envelope"></i>
         </label>
-        <input type="email" name="email" placeholder="Email" id="email" required>
+        <input id="email" name="email" placeholder="Email" required type="email">
         <label for="phone">
             <i class="fas fa-phone"></i>
         </label>
-        <input type="tel" name="phone" placeholder="Phone" id="phone" required>
+        <input id="phone" name="phone" placeholder="Phone" required type="tel">
         <input type="submit" value="Register">
     </form>
 </div>

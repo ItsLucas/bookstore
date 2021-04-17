@@ -1,6 +1,7 @@
 package me.itslucas.bookstore.service;
 
 import me.itslucas.bookstore.domain.Book;
+
 import java.util.List;
 
 public interface BookService {
@@ -12,5 +13,5 @@ public interface BookService {
 
     List<Book> blurrySearch(String title);
 
-    public void save(Book book);
+    void save(Book book);
 }
