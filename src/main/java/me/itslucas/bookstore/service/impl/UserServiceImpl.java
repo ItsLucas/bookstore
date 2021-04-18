@@ -74,17 +74,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional
-    public User createUser(User user, Set<UserRole> userRoles) {
+    public User createUser(User user) {
         User localUser = userRepository.findByUsername(user.getUsername());
 
         if (localUser != null) {
             LOG.info("user {} already exists. Nothing will be done.", user.getUsername());
         } else {
-            for (UserRole ur : userRoles) {
-                roleRepository.save(ur.getRole());
-            }
-
-            user.getUserRoles().addAll(userRoles);
 
             ShoppingCart shoppingCart = new ShoppingCart();
             shoppingCart.setUser(user);

@@ -59,10 +59,10 @@ class UserController {
             user.email = email
             user.phone = phone
 
-            val role = roleRepository!!.findByName("ROLE_USER")
-            val userRoles: MutableSet<UserRole> = HashSet()
-            userRoles.add(UserRole(user as User?, role))
-            userService.createUser(user, userRoles)
+            //val role = roleRepository!!.findByName("ROLE_USER")
+            //val userRoles: MutableSet<UserRole> = HashSet()
+            //userRoles.add(UserRole(user as User?, role))
+            userService.createUser(user)
             val token = UUID.randomUUID().toString()
             userService.createPasswordResetTokenForUser(user, token)
             modelAndView = ModelAndView("login")

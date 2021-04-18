@@ -37,7 +37,7 @@ public class CartItemServiceImpl implements CartItemService {
         return cartItem;
     }
 
-    public CartItem addBookToCartItem(Book book, UserOld user, int qty) {
+    public CartItem addBookToCartItem(Book book, User user, int qty) {
         List<CartItem> cartItemList = findByShoppingCart(user.getShoppingCart());
 
         for (CartItem cartItem : cartItemList) {

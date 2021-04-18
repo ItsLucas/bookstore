@@ -27,22 +27,36 @@
 <main>
     <div class="cart content-wrapper">
         <h1>Shopping Cart</h1>
-        <form method="post" th:action="@{/addcart}">
+        <form method="post" th:action="@{/placeorder}">
             <table>
-                <a th:each="cartItem : ${cartItems}"></a>
                 <thead>
                 <tr>
-                    <td colspan="2" th:href="@{/productdetail(id=${cartItem.book.id})}"
-                        th:text="${cartItem.book.title}">Product
-                    </td>
-                    <td th:text="${cartItem.book.listPrice}">Price</td>
-                    <td th:text="${cartItem.qty}">Quantity</td>
-                    <td th:text="${cartItem.subtotal}">Total</td>
+                    <td colspan="2">Product</td>
+                    <td>Price</td>
+                    <td>Quantity</td>
+                    <td>Total</td>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td colspan="5" style="text-align:center;">You have no products added in your Shopping Cart</td>
+                <tr th:each="cartItem : ${cartItems}">
+                    <td class="img">
+                        <a th:href="@{/productdetail(id=${cartItem.book.id})}">
+                            <img th:src="@{/imgs/{num}.jpg(num=${cartItem.getBook().getId()})}" width="50" height="50"
+                                 alt="">
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="@{/productdetail(id=${cartItem.book.id})}"
+                           th:text="${cartItem.book.getTitle()}"></a>
+                        <br>
+                        <a th:href="@{/removeCart(id=${cartItem.book.id})}" class="remove">Remove</a>
+                    </td>
+                    <td class="price" th:text="${cartItem.book.getListPrice()}">&dollar;16</td>
+                    <td class="quantity">
+                        <input type="number" name="quantity-F0019" value="1" min="1" max="99" placeholder="Quantity"
+                               required>
+                    </td>
+                    <td class="price" th:text="${cartItem.book.getListPrice()}">&dollar;16</td>
                 </tr>
                 </tbody>
             </table>
@@ -50,12 +64,10 @@
                 <span class="text">Discount</span>
                 <span class="price">&dollar;0</span>
                 <span class="text">Subtotal</span>
-                <span class="price">&dollar;233</span>
+                <span class="price" th:text="${shoppingCart.grandTotal}">&dollar;233</span>
             </div>
             <div class="buttons">
-                <input name="update" type="submit" value="Update">
                 <input name="placeorder" type="submit" value="Place Order">
-                <input name="c_placeorder" type="submit" value="Place Order With CheckLater">
             </div>
         </form>
     </div>

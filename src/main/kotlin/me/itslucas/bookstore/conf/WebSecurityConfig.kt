@@ -24,7 +24,7 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
     override fun configure(http: HttpSecurity) {
         http {
             authorizeRequests {
-                authorize("/cart", hasRole("USER"))
+                authorize("/cart", authenticated)
                 authorize("/", permitAll)
                 authorize("/h2-console/**", permitAll)
                 authorize(anyRequest, permitAll)
