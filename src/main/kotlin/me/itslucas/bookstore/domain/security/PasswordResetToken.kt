@@ -16,7 +16,7 @@ class PasswordResetToken {
     var user: User? = null
     var expiryDate: Date? = null
 
-    constructor() {}
+    constructor()
     constructor(token: String?, user: User?) : super() {
         this.token = token
         this.user = user

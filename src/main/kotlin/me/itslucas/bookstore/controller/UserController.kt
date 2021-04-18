@@ -1,27 +1,33 @@
 package me.itslucas.bookstore.controller
 
-import me.itslucas.bookstore.domain.Login
 import me.itslucas.bookstore.domain.User
 import me.itslucas.bookstore.domain.security.Role
 import me.itslucas.bookstore.domain.security.UserRole
+import me.itslucas.bookstore.repository.RoleRepository
 import me.itslucas.bookstore.service.UserService
-import me.itslucas.bookstore.service.impl.UserSecurityService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
-import org.springframework.web.bind.annotation.*
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.servlet.ModelAndView
 import java.util.*
-import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
+import org.springframework.security.crypto.password.PasswordEncoder
 
 @Controller
 class UserController {
+
+    @Autowired
+    private val passwordEncoder: PasswordEncoder? = null
+
     @Autowired
     private val userService: UserService? = null
 
     @Autowired
-    private val userSecurityService: UserSecurityService? = null
+    private val roleRepository: RoleRepository? = null
+
 
     @GetMapping("/login")
     fun login(model: Model?): String {
@@ -38,52 +44,31 @@ class UserController {
         return "login"
     }
 
-    @RequestMapping(value = ["/authenticate"], method = [RequestMethod.POST])
-    fun authenticate(
-        request: HttpServletRequest?,
-        response: HttpServletResponse?,
-        @ModelAttribute("login") login: Login,
-        model: Model?
-    ): ModelAndView? {
-        var mav: ModelAndView? = null
-//        Logger.getLogger("test").info("111")
-//        val user = userService!!.findByUsername(login.username)
-//        if (user == null) {
-//            mav = ModelAndView("error")
-//        } else if (user.password == login.password) {
-//            mav = ModelAndView("index")
-//            mav.addObject("name", user.username)
-//        }
-        return mav
-    }
-
     @PostMapping("/registercheck")
     @Throws(Exception::class)
-    fun reg(
-        @RequestParam(name = "username", required = false, defaultValue = "World") name: String?,
-        @RequestParam(name = "password", required = false, defaultValue = "World") pass: String?,
-        @RequestParam(name = "email", required = false, defaultValue = "World") email: String?,
-        @RequestParam(name = "phone", required = false, defaultValue = "World") phone: String?,
+    fun register(
+        @RequestParam(name = "username", required = false, defaultValue = "World") name: String,
+        @RequestParam(name = "password", required = false, defaultValue = "World") pass: String,
+        @RequestParam(name = "email", required = false, defaultValue = "World") email: String,
+        @RequestParam(name = "phone", required = false, defaultValue = "World") phone: String,
         model: Model?
     ): ModelAndView {
-        var mav: ModelAndView? = null
-        val ud = userSecurityService!!.loadUserByUsername(name)
-        if (null == ud) {
+        var modelAndView: ModelAndView? = null
+        if (userService!!.findByUsername(name) == null) {
             val user = User()
-            user.setUsername(name)
-            user.setPassword(pass)
+            user.username = name
+            user.password = passwordEncoder!!.encode(pass)
             user.email = email
             user.phone = phone
-            val role = Role()
-            role.roleId = 1
-            role.name = "ROLE_USER"
+
+            val role = roleRepository!!.findByName("ROLE_USER")
             val userRoles: MutableSet<UserRole> = HashSet()
             userRoles.add(UserRole(user as User?, role))
-            userService?.createUser(user, userRoles)
+            userService.createUser(user, userRoles)
             val token = UUID.randomUUID().toString()
-            userService?.createPasswordResetTokenForUser(user, token)
-            mav = ModelAndView("login")
-        } else mav = ModelAndView("error")
-        return mav
+            userService.createPasswordResetTokenForUser(user, token)
+            modelAndView = ModelAndView("login")
+        } else modelAndView = ModelAndView("error")
+        return modelAndView
     }
 }

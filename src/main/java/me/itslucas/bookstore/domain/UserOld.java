@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-public class User implements UserDetails {
+public class UserOld implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

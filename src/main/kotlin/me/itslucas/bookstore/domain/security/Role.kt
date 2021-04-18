@@ -1,6 +1,6 @@
 package me.itslucas.bookstore.domain.security
 
-import java.util.HashSet
+import java.util.*
 import javax.persistence.*
 
 @Entity

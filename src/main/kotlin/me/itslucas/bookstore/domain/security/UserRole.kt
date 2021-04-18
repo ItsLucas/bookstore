@@ -18,7 +18,7 @@ class UserRole {
     @JoinColumn(name = "role_id")
     var role: Role? = null
 
-    constructor() {}
+    constructor()
     constructor(user: User?, role: Role?) {
         this.user = user
         this.role = role
