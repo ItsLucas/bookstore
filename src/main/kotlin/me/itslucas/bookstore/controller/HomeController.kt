@@ -1,12 +1,15 @@
 package me.itslucas.bookstore.controller
 
 import me.itslucas.bookstore.repository.BookRepository
+import me.itslucas.bookstore.service.OrderService
+import me.itslucas.bookstore.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
+import java.security.Principal
 
 @Controller
 class HomeController {
@@ -14,6 +17,11 @@ class HomeController {
     @Autowired
     private val bookRepository: BookRepository? = null
 
+    @Autowired
+    private val userService: UserService? = null
+
+    @Autowired
+    private val orderService: OrderService? = null
 
     @GetMapping("/index")
     fun index(model: Model): String {
@@ -36,7 +44,10 @@ class HomeController {
     }
 
     @GetMapping("/viptest")
-    fun viptest(model: Model?): String {
+    fun viptest(model: Model?, principal: Principal?): String {
+        val user = userService?.findByUsername(principal?.name)
+        val orders = orderService?.getOrders(user);
+
         return "vip"
     }
 }

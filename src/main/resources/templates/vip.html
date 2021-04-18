@@ -48,23 +48,23 @@
             <ul>
                 <li>
                     <span class="Detail-4-Left">顾客ID</span>
-                    <td th:text="${user.username}">xxx</td>
+                    <td >xxx</td>
                 </li>
                 <li>
                     <span class="Detail-4-Left">顾客名称</span>
-                    <td th:text="${user.id}">xxx</td>
+                    <td >xxx</td>
                 </li>
                 <li>
                     <span class="Detail-4-Left">电话</span>
-                    <td th:text="${user.phone}">xxx</td>
+                    <td >xxx</td>
                 </li>
                 <li>
                     <span class="Detail-4-Left">邮箱</span>
-                    <td th:text="${user.email}">xxx</td>
+                    <td >xxx</td>
                 </li>
                 <li>
                     <span class="Detail-4-Left">密码</span>
-                    <td th:text="${user.password}">xxx</td>
+                    <td >xxx</td>
                 </li>
             </ul>
         </div>
@@ -73,21 +73,20 @@
             <ul>
                 <li>
                     <table id="TopTR">
-                        <a th:each="order : ${orders}">
-                            <a th:each="cartItem : ${order.getCartItemList()}"></a>
+
                             <tr>
-                                <td th:href="@{/productdetail(id=${cartItem.book.id})}"
-                                    th:text="${cartItem.book.title}">
+                                <td
+                                    >
                                     商品信息
-                                    <img alt="" height="200" th:src="@{/imgs/{num}.jpg(num=${cartItem.book.id})}"
+                                    <img alt="" height="200"
                                          width="200">
                                 </td>
-                                <td th:text="${cartItem.book.listPrice}">单价</td>
-                                <td th:text="${cartItem.qty}">数量</td>
+                                <td >单价</td>
+                                <td >数量</td>
                                 <td>商品操作</td>
-                                <td th:text="${cartItem.subtotal}">实付款</td>
-                                <td th:text="${order.orderStatus}">交易状态</td>
-                                <td th:text="${order.shippingMethod}">付款方式</td>
+                                <td >实付款</td>
+                                <td >交易状态</td>
+                                <td >付款方式</td>
                             </tr>
                     </table>
                 </li>
@@ -232,7 +231,7 @@
             <ul>
                 <li>
                     <span class="Detail-4-Left">顾客名称</span>
-                    <td><input th:placeholder="${user.username}" type="text"/></td>
+                    <td><input  type="text"/></td>
                 </li>
                 <li style="background-color: white;">
                     <input class=" BaoCun" type="button" value="保存"/>
@@ -256,21 +255,21 @@
                     <input class=" BaoCun" type="button" value="保存"/>
                 </li>
                 <li>
-                    <span class="Detail-4-Left" th:placeholder="${user.phone}">电话</span>
+                    <span class="Detail-4-Left" >电话</span>
                     <input type="text"/>
                 </li>
                 <li style="background-color: white;">
                     <input class=" BaoCun" type="button" value="保存"/>
                 </li>
                 <li>
-                    <span class="Detail-4-Left" th:placeholder="${user.email}">邮箱</span>
+                    <span class="Detail-4-Left">邮箱</span>
                     <input type="text"/>
                 </li>
                 <li style="background-color: white;">
                     <input class=" BaoCun" type="button" value="保存"/>
                 </li>
                 <li>
-                    <span class="Detail-4-Left" th:placeholder="${user.password}">密码</span>
+                    <span class="Detail-4-Left">密码</span>
                     <input type="text"/>
                 </li>
                 <li style="background-color: white;">
