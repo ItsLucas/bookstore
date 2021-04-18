@@ -16,7 +16,7 @@ java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
     mavenCentral()
-    maven("https://repo.grails.org/grails/core")
+//    maven("https://repo.grails.org/grails/core")
 }
 
 dependencies {

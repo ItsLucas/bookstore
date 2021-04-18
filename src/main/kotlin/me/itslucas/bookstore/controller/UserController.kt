@@ -1,12 +1,11 @@
 package me.itslucas.bookstore.controller
 
 import me.itslucas.bookstore.domain.User
-import me.itslucas.bookstore.domain.security.Role
 import me.itslucas.bookstore.domain.security.UserRole
 import me.itslucas.bookstore.repository.RoleRepository
 import me.itslucas.bookstore.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.security.core.userdetails.UserDetailsService
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.servlet.ModelAndView
 import java.util.*
-import org.springframework.security.crypto.password.PasswordEncoder
 
 @Controller
 class UserController {
@@ -56,8 +54,8 @@ class UserController {
         var modelAndView: ModelAndView? = null
         if (userService!!.findByUsername(name) == null) {
             val user = User()
-            user.username = name
-            user.password = passwordEncoder!!.encode(pass)
+            user.setUsername(name)
+            user.setPassword(pass)
             user.email = email
             user.phone = phone
 

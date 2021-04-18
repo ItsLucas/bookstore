@@ -3,21 +3,26 @@ package me.itslucas.bookstore.domain
 import com.fasterxml.jackson.annotation.JsonIgnore
 import me.itslucas.bookstore.domain.security.Authority
 import me.itslucas.bookstore.domain.security.UserRole
+import me.itslucas.bookstore.utility.SecurityUtility
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
-import java.util.*
 import java.util.function.Consumer
 import javax.persistence.*
 
+
 @Entity
-data class User(
+class User : UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
-    var id: Long,
-    private var username: String,
-    private var password: String,
-) : UserDetails {
+    var id: Long? = null
+
+    @Transient
+    private var raw_password: String? = null
+
+    private var username: String? = null
+    private var password: String? = null
+
     var firstName: String? = null
     var lastName: String? = null
 
@@ -26,7 +31,7 @@ data class User(
     var phone: String? = null
     private var enabled = true
 
-    @OneToOne(cascade = [CascadeType.ALL] )
+    @OneToOne(cascade = [CascadeType.ALL])
     var shoppingCart: ShoppingCart? = null
 
     @OneToMany(cascade = [CascadeType.ALL])
@@ -47,8 +52,8 @@ data class User(
         userRoles.forEach(Consumer { ur: UserRole ->
             authorites.add(
                 Authority(
-                ur.role!!.name!!
-            )
+                    ur.role!!.name!!
+                )
             )
         })
         return authorites
@@ -56,8 +61,13 @@ data class User(
 
     override fun getUsername() = username
     override fun getPassword() = password
-    fun setUsername(name: String) { username = name }
-    fun setPassword(pass: String) { password = pass }
+    fun setUsername(name: String) {
+        username = name
+    }
+
+    fun setPassword(pass: String) {
+        raw_password = pass
+    }
 
     override fun isAccountNonExpired(): Boolean {
         // TODO Auto-generated method stub
@@ -80,5 +90,13 @@ data class User(
 
     fun setEnabled(enabled: Boolean) {
         this.enabled = enabled
+    }
+
+    @PrePersist
+    @PreUpdate
+    fun beforeSave() {
+        if (raw_password != null) {
+            password = SecurityUtility.passwordEncoder().encode(raw_password)
+        }
     }
 }
