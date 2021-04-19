@@ -20,17 +20,9 @@ public class OrderServiceImpl implements OrderService {
     private CartItemService cartItemService;
 
     public synchronized Order createOrder(ShoppingCart shoppingCart,
-                                          ShippingAddress shippingAddress,
-                                          BillingAddress billingAddress,
-                                          Payment payment,
-                                          String shippingMehod,
                                           User user) {
         Order order = new Order();
-        order.setBillingAddress(billingAddress);
         order.setOrderStatus("created");
-        order.setPayment(payment);
-        order.setShippingAddress(shippingAddress);
-        order.setShippingMethod(shippingMehod);
 
         List<CartItem> cartItemList = cartItemService.findByShoppingCart(shoppingCart);
 
@@ -43,13 +35,14 @@ public class OrderServiceImpl implements OrderService {
         order.setCartItemList(cartItemList);
         order.setOrderDate(Calendar.getInstance().getTime());
         order.setOrderTotal(shoppingCart.getGrandTotal());
-        shippingAddress.setOrder(order);
-        billingAddress.setOrder(order);
-        payment.setOrder(order);
         order.setUser(user);
         order = orderRepository.save(order);
 
         return order;
+    }
+
+    public List<Order> getOrders(User user) {
+        return orderRepository.findOrdersByUser(user);
     }
 
     public Order findOne(Long id) {

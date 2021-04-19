@@ -2,6 +2,7 @@ package me.itslucas.bookstore.service.impl;
 
 import me.itslucas.bookstore.domain.CartItem;
 import me.itslucas.bookstore.domain.ShoppingCart;
+import me.itslucas.bookstore.domain.User;
 import me.itslucas.bookstore.repository.ShoppingCartRepository;
 import me.itslucas.bookstore.service.CartItemService;
 import me.itslucas.bookstore.service.ShoppingCartService;
@@ -50,5 +51,10 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
             shoppingCartRepository.save(shoppingCart);
         }
+    }
+
+    @Override
+    public ShoppingCart getByName(User user) {
+        return shoppingCartRepository.findShoppingCartByUser(user);
     }
 }

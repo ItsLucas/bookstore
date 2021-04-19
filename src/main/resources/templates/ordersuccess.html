@@ -2,36 +2,37 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <title>Foodie Customer Portal</title>
+    <title>Bookstore Customer Portal</title>
     <link rel="stylesheet" th:href="@{/styles/style.css}" type="text/css">
     <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet">
 </head>
 <body>
 <header>
     <div class="content-wrapper">
-        <h1>Foodie</h1>
+        <h1>Bookstore</h1>
         <nav>
             <a href="index">Home</a>
             <a href="product">Products</a>
             <a href="register">Register</a>
         </nav>
         <div class="link-icons">
-            <a href="cart">
-                <i class="fas fa-shopping-cart"></i> <span>0</span>
-            </a>
+            <a href="vip"><p th:text="${user.username}" th:if="${user ne null}"></p>
+                <a href="cart">
+                    <i class="fas fa-shopping-cart"></i> <span>0</span>
+                </a>
         </div>
     </div>
 </header>
 <main>
 
     <div class="placeorder content-wrapper">
-        <h1>Error Occurred</h1>
-        <p>You have input a wrong password or there's technical issues. Please try again.</p>
+        <h1>Your Order Has Been Placed</h1>
+        <p>Thank you for ordering with us, we'll contact you by email with your order details.</p>
     </div>
 </main>
 <footer>
     <div class="content-wrapper">
-        <p>&copy; 2020, Foodie Ltd.</p>
+        <p>&copy; 2020, Bookstore Ltd.</p>
     </div>
 </footer>
 </body>

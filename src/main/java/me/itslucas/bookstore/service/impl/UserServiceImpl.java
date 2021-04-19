@@ -8,14 +8,18 @@ import me.itslucas.bookstore.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
     private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
@@ -32,6 +36,15 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private PasswordResetTokenRepository passwordResetTokenRepository;
+
+    @Override
+    public UserDetails loadUserByUsername(String username) {
+        User user = userRepository.findByUsername(username);
+        if (null == user) {
+            throw new UsernameNotFoundException("Username not found");
+        }
+        return user;
+    }
 
     @Override
     public PasswordResetToken getPasswordResetToken(final String token) {
@@ -60,18 +73,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-//    @Transactional
-    public User createUser(User user, Set<UserRole> userRoles) {
+    @Transactional
+    public User createUser(User user) {
         User localUser = userRepository.findByUsername(user.getUsername());
 
         if (localUser != null) {
             LOG.info("user {} already exists. Nothing will be done.", user.getUsername());
         } else {
-            for (UserRole ur : userRoles) {
-                roleRepository.save(ur.getRole());
-            }
-
-            user.getUserRoles().addAll(userRoles);
 
             ShoppingCart shoppingCart = new ShoppingCart();
             shoppingCart.setUser(user);

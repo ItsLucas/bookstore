@@ -1,7 +1,7 @@
 package me.itslucas.bookstore.controller;
 
 import me.itslucas.bookstore.domain.Book;
-import me.itslucas.bookstore.service.BookService;
+import me.itslucas.bookstore.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class InitBookController {
     @Autowired
-    private BookService bookService;
+    private BookRepository bookService;
 
     @GetMapping("/addallbook")
     public boolean addAllBook() {

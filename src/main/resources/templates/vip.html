@@ -3,8 +3,13 @@
 
 <head>
     <meta charset="utf-8">
+<<<<<<< HEAD
+    <title>Bookstore Customer Portal</title>
+    <link rel="stylesheet" th:href="@{/styles/style.css}" type="text/css">
+=======
     <title>Foodie Customer Portal</title>
     <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
+>>>>>>> master
     <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet">
     <script type="text/javascript" th:src="@{/js/Data.js}"></script>
     <link rel="stylesheet" th:href="@{/styles/Common.css}" />
@@ -13,6 +18,47 @@
 </head>
 
 <body>
+<<<<<<< HEAD
+<header>
+    <div class="content-wrapper">
+        <h1>Bookstore</h1>
+        <nav>
+            <a href="index">Home</a>
+            <a href="product">Products</a>
+            <a href="logout">Logout</a>
+        </nav>
+        <div class="link-icons">
+            <a href="vip"><p th:text="${user.username}" th:if="${user ne null}"></p>
+                <a href="cart">
+                    <i class="fas fa-shopping-cart"></i> <span>0</span>
+                </a>
+        </div>
+    </div>
+</header>
+<div class="Content">
+    <div class="Left" id="Left">
+        <ul>
+            <li class="Select">
+                <a href="#">账户信息</a>
+            </li>
+        </ul>
+    </div>
+    <div class="Right" id="Right">
+        <div class="Details Detail-4" style="display:block;">
+            <p class="AboutUS">账户信息</p>
+            <ul>
+                <li>
+                    <span class="Detail-4-Left">顾客ID</span>
+                    <td th:text="${user.id}">xxx</td>
+                </li>
+                <li>
+                    <span class="Detail-4-Left">顾客名称</span>
+                    <td th:text="${user.username}">xxx</td>
+                </li>
+                <li>
+                    <span class="Detail-4-Left">电话</span>
+                    <td th:text="${user.phone}">xxx</td>
+=======
     <header>
         <div class="content-wrapper">
             <h1>Foodie</h1>
@@ -33,10 +79,18 @@
             <ul>
                 <li class="Select">
                     <a href="#">账户信息</a>
+>>>>>>> master
                 </li>
                 <li>
                     <a href="#">我的订单</a>
                 </li>
+<<<<<<< HEAD
+                <li th:each="order : ${orders}">
+                    <span class="Detail-4-Left" th:text="订单信息"></span>
+                    <td th:text="|订单编号: ${order.id} 订单价格: ${order.orderTotal} 订单日期: ${order.getOrderDate()}|">xxx</td>
+                </li>
+            </ul>
+=======
                 <li>
                     <a href="#">修改信息</a>
                 </li>
@@ -281,6 +335,7 @@
                     </li>
                 </ul>
             </div>
+>>>>>>> master
         </div>
     </div>
 </body>

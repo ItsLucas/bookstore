@@ -7,6 +7,7 @@ plugins {
     war
     kotlin("jvm") version "1.4.32"
     kotlin("plugin.spring") version "1.4.32"
+//    id("groovy")
 }
 
 group = "me.itslucas"
@@ -15,6 +16,7 @@ java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
     mavenCentral()
+//    maven("https://repo.grails.org/grails/core")
 }
 
 dependencies {
@@ -26,8 +28,10 @@ dependencies {
     implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity5")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+//    implementation("org.grails:gorm-hibernate5-spring-boot:7.0.1.RELEASE")
+//    implementation("org.codehaus.groovy:groovy")
 }
-
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")

@@ -20,7 +20,7 @@ public interface UserService {
 
     User findById(Long id);
 
-    User createUser(User user, Set<UserRole> userRoles) throws Exception;
+    User createUser(User user) throws Exception;
 
     User save(User user);
 

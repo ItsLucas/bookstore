@@ -23,7 +23,6 @@ public class Book {
     private int isbn;
     private double shippingWeight;
     private double listPrice;
-    private double ourPrice;
     private boolean active = true;
 
     @Column(columnDefinition = "text")
@@ -132,14 +131,6 @@ public class Book {
 
     public void setListPrice(double listPrice) {
         this.listPrice = listPrice;
-    }
-
-    public double getOurPrice() {
-        return ourPrice;
-    }
-
-    public void setOurPrice(double ourPrice) {
-        this.ourPrice = ourPrice;
     }
 
     public boolean isActive() {
