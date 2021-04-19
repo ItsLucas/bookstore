@@ -1,14 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
+<<<<<<< HEAD
     <title>Bookstore Customer Portal</title>
     <link rel="stylesheet" th:href="@{/styles/style.css}" type="text/css">
+=======
+    <title>Foodie Customer Portal</title>
+    <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
+>>>>>>> master
     <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet">
 </head>
 
 <body>
+<<<<<<< HEAD
 <header>
     <div class="content-wrapper">
         <h1>Bookstore</h1>
@@ -78,6 +84,67 @@
         <p>&copy; 2020, Bookstore Ltd.</p>
     </div>
 </footer>
+=======
+    <header>
+        <div class="content-wrapper">
+            <h1>Foodie</h1>
+            <nav>
+                <a href="index">Home</a>
+                <a href="product">Products</a>
+                <a href="register">Register</a>
+            </nav>
+            <div class="link-icons">
+                <a href="index">
+                    <i class="fas fa-shopping-cart"></i> <span>0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="cart content-wrapper">
+            <h1>Shopping Cart</h1>
+            <form th:action="@{/addcart}" method="post">
+                <table>
+                    <thead>
+                        <tr>
+                            <td colspan="2">Product</td>
+                            <td>Price</td>
+                            <td>Quantity</td>
+                            <td>Total</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="cartItem : ${cartItems}">
+                            <td th:href="@{/productdetail(id=${cartItem.book.id})}" th:text="${cartItem.book.title}"></td>
+                            <td th:text="${cartItem.book.listPrice}"></td>
+                            <td th:text="${cartItem.qty}"></td>
+                            <td th:text="${cartItem.subtotal}"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" style="text-align:center;">You have no products added in your Shopping Cart</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="subtotal">
+                    <span class="text">Discount</span>
+                    <span class="price">&dollar;0</span>
+                    <span class="text">Subtotal</span>
+                    <span class="price">&dollar;233</span>
+                </div>
+                <div class="buttons">
+                    <input type="submit" value="Update" name="update">
+                    <input type="submit" value="Place Order" name="placeorder">
+                    <input type="submit" value="Place Order With CheckLater" name="c_placeorder">
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <div class="content-wrapper">
+            <p>&copy; 2020, Foodie Ltd.</p>
+        </div>
+    </footer>
+>>>>>>> master
 </body>
 
 </html>
