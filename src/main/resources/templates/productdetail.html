@@ -9,17 +9,17 @@
 <body>
 <header>
     <div class="content-wrapper">
-        <h1>Foodie</h1>
+        <h1>Bookstore</h1>
         <nav>
             <a href="index">Home</a>
             <a href="product">Products</a>
             <a href="logout">Logout</a>
         </nav>
         <div class="link-icons">
-            <a href="vip"><p th:text="${name}"></a>
-            <a href="cart">
-                <i class="fas fa-shopping-cart"></i>
-            </a>
+            <a href="vip"><p th:text="${user.username}" th:if="${user ne null}"></p>
+                <a href="cart">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
         </div>
     </div>
 </header>
@@ -96,7 +96,7 @@
 </main>
 <footer>
     <div class="content-wrapper">
-        <p>&copy; 2020, Foodie Ltd.</p>
+        <p>&copy; 2020, Bookstore Ltd.</p>
     </div>
 </footer>
 </body>

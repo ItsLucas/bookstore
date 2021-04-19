@@ -43,7 +43,7 @@ class ShoppingCartController {
         var cartItemList = cartItemService?.findByShoppingCart(shoppingCart);
 
         shoppingCartService?.updateShoppingCart(shoppingCart);
-
+        model?.addAttribute("user", user);
         model?.addAttribute("cartItems", cartItemList);
         model?.addAttribute("shoppingCart", shoppingCart)
         return "cart"
@@ -74,6 +74,7 @@ class ShoppingCartController {
         val cartItemList = cartItemService!!.findByShoppingCart(user!!.shoppingCart)
         orderService?.createOrder(user.shoppingCart, user)
         shoppingCartService?.clearShoppingCart(user.shoppingCart);
+        model?.addAttribute("user", user);
         return "ordersuccess";
     }
 

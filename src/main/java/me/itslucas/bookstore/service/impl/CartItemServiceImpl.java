@@ -27,7 +27,7 @@ public class CartItemServiceImpl implements CartItemService {
     }
 
     public CartItem updateCartItem(CartItem cartItem) {
-        BigDecimal bigDecimal = new BigDecimal(cartItem.getBook().getOurPrice()).multiply(new BigDecimal(cartItem.getQty()));
+        BigDecimal bigDecimal = new BigDecimal(cartItem.getBook().getListPrice()).multiply(new BigDecimal(cartItem.getQty()));
 
         bigDecimal = bigDecimal.setScale(2, RoundingMode.HALF_UP);
         cartItem.setSubtotal(bigDecimal);
@@ -43,7 +43,7 @@ public class CartItemServiceImpl implements CartItemService {
         for (CartItem cartItem : cartItemList) {
             if (book.getId() == cartItem.getBook().getId()) {
                 cartItem.setQty(cartItem.getQty() + qty);
-                cartItem.setSubtotal(new BigDecimal(book.getOurPrice()).multiply(new BigDecimal(qty)));
+                cartItem.setSubtotal(new BigDecimal(book.getListPrice()).multiply(new BigDecimal(qty)));
                 cartItemRepository.save(cartItem);
                 return cartItem;
             }
@@ -54,7 +54,7 @@ public class CartItemServiceImpl implements CartItemService {
         cartItem.setBook(book);
 
         cartItem.setQty(qty);
-        cartItem.setSubtotal(new BigDecimal(book.getOurPrice()).multiply(new BigDecimal(qty)));
+        cartItem.setSubtotal(new BigDecimal(book.getListPrice()).multiply(new BigDecimal(qty)));
         cartItem = cartItemRepository.save(cartItem);
 
         BookToCartItem bookToCartItem = new BookToCartItem();

@@ -23,31 +23,48 @@ class HomeController {
     @Autowired
     private val orderService: OrderService? = null
 
-    @GetMapping("/index")
-    fun index(model: Model): String {
+    @GetMapping("/")
+    fun index2(model: Model, principal: Principal?): String {
         val books = bookRepository!!.findAll(PageRequest.of(0, 4)).toList()
         model.addAttribute("books", books)
+        val user = userService?.findByUsername(principal?.name)
+        model?.addAttribute("user", user);
+        return "index"
+    }
+
+    @GetMapping("/index")
+    fun index(model: Model, principal: Principal?): String {
+        val books = bookRepository!!.findAll(PageRequest.of(0, 4)).toList()
+        model.addAttribute("books", books)
+        val user = userService?.findByUsername(principal?.name)
+        model?.addAttribute("user", user);
         return "index"
     }
 
     @GetMapping("/product")
-    fun product(model: Model): String {
+    fun product(model: Model, principal: Principal?): String {
         model.addAttribute("books", bookRepository!!.findAll())
+        val user = userService?.findByUsername(principal?.name)
+        model?.addAttribute("user", user);
         return "product"
     }
 
     @GetMapping("/productdetail")
-    fun producttest(model: Model, @RequestParam(name = "id") id: Long): String {
+    fun producttest(model: Model, principal: Principal?, @RequestParam(name = "id") id: Long): String {
         val book = bookRepository!!.findById(id).get()
         model.addAttribute("book", book)
+        val user = userService?.findByUsername(principal?.name)
+        model?.addAttribute("user", user);
         return "productdetail"
     }
 
-    @GetMapping("/viptest")
+    @GetMapping("/vip")
     fun viptest(model: Model?, principal: Principal?): String {
         val user = userService?.findByUsername(principal?.name)
+        model?.addAttribute("user", user);
         val orders = orderService?.getOrders(user);
 
+        model?.addAttribute("orders", orders);
         return "vip"
     }
 }
