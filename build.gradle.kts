@@ -15,9 +15,17 @@ version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
+    maven("https://maven.aliyun.com/repository/public/")
+    maven("https://maven.aliyun.com/repository/jcenter/")
+    maven("https://maven.aliyun.com/repository/spring/")
+    maven("https://maven.aliyun.com/repository/gradle-plugin/")
+    maven("https://maven.aliyun.com/repository/central/")
     mavenCentral()
+    jcenter()
+    mavenLocal()
 //    maven("https://repo.grails.org/grails/core")
 }
+
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -29,6 +37,9 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("io.jsonwebtoken:jjwt-api:0.11.2")
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.2")
+    runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.2")
 //    implementation("org.grails:gorm-hibernate5-spring-boot:7.0.1.RELEASE")
 //    implementation("org.codehaus.groovy:groovy")
 }
