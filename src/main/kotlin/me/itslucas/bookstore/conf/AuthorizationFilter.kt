@@ -22,7 +22,7 @@ class AuthorizationFilter(authManager: AuthenticationManager?) : BasicAuthentica
         response: HttpServletResponse,
         chain: FilterChain
     ) {
-        val header = request.getHeader(HEADER_NAME)
+        val header = request.getHeader("authorization")
         if (header == null) {
             chain.doFilter(request, response)
             return
@@ -33,7 +33,7 @@ class AuthorizationFilter(authManager: AuthenticationManager?) : BasicAuthentica
     }
 
     private fun authenticate(request: HttpServletRequest): UsernamePasswordAuthenticationToken? {
-        val token = request.getHeader(HEADER_NAME)
+        val token = request.getHeader("authorization")
         if (token != null) {
             val user = Jwts.parserBuilder()
                 .setSigningKey(Keys.hmacShaKeyFor(KEY.toByteArray()))
