@@ -35,8 +35,9 @@ class AuthorizationFilter(authManager: AuthenticationManager?) : BasicAuthentica
     private fun authenticate(request: HttpServletRequest): UsernamePasswordAuthenticationToken? {
         val token = request.getHeader(HEADER_NAME)
         if (token != null) {
-            val user = Jwts.parser()
+            val user = Jwts.parserBuilder()
                 .setSigningKey(Keys.hmacShaKeyFor(KEY.toByteArray()))
+                .build()
                 .parseClaimsJws(token)
                 .body
             return if (user != null) {

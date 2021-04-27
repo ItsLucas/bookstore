@@ -1,7 +1,6 @@
 package me.itslucas.bookstore.conf
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.security.Keys
@@ -21,17 +20,15 @@ import javax.servlet.FilterChain
 import javax.servlet.ServletException
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
-import kotlin.collections.ArrayList
 
 
-class AuthenticationFilter :
+class AuthenticationFilter(@get:JvmName("authenticationManager") private val authenticationManager: AuthenticationManager) :
     UsernamePasswordAuthenticationFilter() {
     @Throws(AuthenticationException::class)
     override fun attemptAuthentication(
         req: HttpServletRequest,
         res: HttpServletResponse
     ): Authentication {
-        //TODO fix getAuthenticationManager() is null
         return try {
             val applicationUser: UserLogin =
                 ObjectMapper().readValue(req.inputStream, UserLogin::class.java)
@@ -48,13 +45,13 @@ class AuthenticationFilter :
 
     @Throws(IOException::class, ServletException::class)
     override fun successfulAuthentication(
-        req: HttpServletRequest?, res: HttpServletResponse, chain: FilterChain?,
+        req: HttpServletRequest, res: HttpServletResponse, chain: FilterChain,
         auth: Authentication
     ) {
         val exp = Date(System.currentTimeMillis() + EXPIRATION_TIME)
         val key: Key = Keys.hmacShaKeyFor(KEY.toByteArray())
-        val claims: Claims = Jwts.claims().setSubject((auth.getPrincipal() as User).getUsername())
-        val token: String =
+        val claims = Jwts.claims().setSubject((auth.principal as User).username)
+        val token =
             Jwts.builder().setClaims(claims).signWith(key, SignatureAlgorithm.HS512).setExpiration(exp).compact()
         res.addHeader("token", token)
     }

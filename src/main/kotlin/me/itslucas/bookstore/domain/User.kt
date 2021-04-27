@@ -66,7 +66,7 @@ class User : UserDetails {
     }
 
     fun setPassword(pass: String) {
-        raw_password = pass
+        password = pass
     }
 
     override fun isAccountNonExpired(): Boolean {
@@ -92,11 +92,4 @@ class User : UserDetails {
         this.enabled = enabled
     }
 
-    @PrePersist
-    @PreUpdate
-    fun beforeSave() {
-        if (raw_password != null) {
-            password = SecurityUtility.passwordEncoder().encode(raw_password)
-        }
-    }
 }
