@@ -32,7 +32,7 @@ public class OrderServiceImpl implements OrderService {
             book.setInStockNumber(book.getInStockNumber() - cartItem.getQty());
         }
 
-        order.setCartItemList(cartItemList);
+        order.setCartItemList(null);
         order.setOrderDate(Calendar.getInstance().getTime());
         order.setOrderTotal(shoppingCart.getGrandTotal());
         order.setUser(user);

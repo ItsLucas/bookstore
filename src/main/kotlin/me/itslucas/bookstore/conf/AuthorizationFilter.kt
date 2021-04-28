@@ -3,7 +3,9 @@ package me.itslucas.bookstore.conf
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
 import me.itslucas.bookstore.conf.SecurityConstants.Companion.KEY
-import org.springframework.boot.web.servlet.filter.ApplicationContextHeaderFilter.HEADER_NAME
+import me.itslucas.bookstore.service.UserService
+import org.slf4j.LoggerFactory
+import me.itslucas.bookstore.conf.SecurityConstants.Companion.HEADER_NAME
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServletResponse
 
 
 class AuthorizationFilter(authManager: AuthenticationManager?) : BasicAuthenticationFilter(authManager) {
+    private val LOG = LoggerFactory.getLogger(AuthorizationFilter::class.java)
     @Throws(IOException::class, ServletException::class)
     override fun doFilterInternal(
         request: HttpServletRequest,
@@ -23,6 +26,7 @@ class AuthorizationFilter(authManager: AuthenticationManager?) : BasicAuthentica
         chain: FilterChain
     ) {
         val header = request.getHeader(HEADER_NAME)
+        LOG.info("authorization: $header")
         if (header == null) {
             chain.doFilter(request, response)
             return

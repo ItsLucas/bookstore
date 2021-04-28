@@ -1,5 +1,9 @@
 package me.itslucas.bookstore.service.impl;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.jsonwebtoken.Jwts;
+import me.itslucas.bookstore.conf.SecurityConstants;
 import me.itslucas.bookstore.domain.*;
 import me.itslucas.bookstore.domain.security.PasswordResetToken;
 import me.itslucas.bookstore.domain.security.UserRole;
@@ -58,8 +62,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public User findByUsername(String username) throws JsonProcessingException {
+        String realString = null;
+        if (username.contains("=")) {
+            realString = username.substring(username.indexOf('=') + 1, username.indexOf(','));
+        } else realString = username;
+        LOG.info(realString);
+        return userRepository.findByUsername(realString);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package me.itslucas.bookstore.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import me.itslucas.bookstore.domain.User;
 import me.itslucas.bookstore.domain.UserBilling;
 import me.itslucas.bookstore.domain.UserPayment;
@@ -14,7 +15,7 @@ public interface UserService {
 
     void createPasswordResetTokenForUser(final User user, final String token);
 
-    User findByUsername(String username);
+    User findByUsername(String username) throws JsonProcessingException;
 
     User findByEmail(String email);
 
