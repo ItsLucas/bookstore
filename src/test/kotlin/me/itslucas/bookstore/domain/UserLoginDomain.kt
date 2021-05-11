@@ -1,4 +1,8 @@
 package me.itslucas.bookstore.domain
 
-class UserLoginDomain {
+class UserLoginDomain(
+    private var username: String?,
+    private var password: String?
+) {
+
 }
