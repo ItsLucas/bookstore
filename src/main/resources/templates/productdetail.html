@@ -5,8 +5,14 @@
     <title>Index</title>
     <link rel="stylesheet" th:href="@{/styles/style.css}" type="text/css">
     <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet">
+    <script src="../static/js/init.js"></script>
+    <script src="../static/js/addCart.js"></script>
 </head>
 <body>
+<script>
+    var data = init("../api/productdetail");
+    var book = data;
+</script>
 <header>
     <div class="content-wrapper">
         <h1>Bookstore</h1>
@@ -34,11 +40,11 @@
             <div class="description" th:text="${book.description}">
                 net weight is: 233 g
             </div>
-            <form method="post" th:action="@{/addcart}">
+            <div>
                 <input max="<?=$product['quantity']?>" min="1" name="quantity" placeholder="Quantity" required
                        type="number" value="1">
                 <input name="product_id" th:value="${book.id}" type="hidden">
-                <input type="submit" value="Add To Cart">
+                <input type="submit" value="Add To Cart" onclick="addCart">
                 <style>
                     #VIP {
                         font-family: Arial, Helvetica, sans-serif;
@@ -89,7 +95,7 @@
                         </li>
                     </ul>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 

@@ -5,8 +5,13 @@
     <title>Index</title>
     <link rel="stylesheet" th:href="@{/styles/style.css}" type="text/css">
     <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet">
+    <script src="../static/js/init.js"></script>
 </head>
 <body>
+<script>
+    var data = init("../api/allproducts");
+    var books = data;
+</script>
 <header>
     <div class="content-wrapper">
         <h1>Bookstore</h1>

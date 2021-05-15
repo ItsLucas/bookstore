@@ -3,6 +3,8 @@
 
 <head>
     <meta charset="utf-8">
+<<<<<<< VALIDATE
+    <script src="../static/js/validate.js"></script>
 <<<<<<< HEAD
     <title>Bookstore Customer Portal</title>
     <link rel="stylesheet" th:href="@{/styles/style.css}" type="text/css">
@@ -11,9 +13,17 @@
     <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
 >>>>>>> master
     <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet">
+    <script src="../static/js/placeOrder.js"></script>
 </head>
 
 <body>
+<<<<<<< VALIDATE
+<script>
+    var data = validate("../api/cart");
+    var shoppingCart = data;
+    var user = data.user;
+    var cartItems = data.cartItems;
+</script>
 <<<<<<< HEAD
 <header>
     <div class="content-wrapper">
@@ -34,7 +44,7 @@
 <main>
     <div class="cart content-wrapper">
         <h1>Shopping Cart</h1>
-        <form method="post" th:action="@{/placeorder}">
+        <div>
             <table>
                 <thead>
                 <tr>
@@ -56,7 +66,8 @@
                         <a th:href="@{/productdetail(id=${cartItem.book.id})}"
                            th:text="${cartItem.book.getTitle()}"></a>
                         <br>
-                        <a th:href="@{/removeCart(id=${cartItem.book.id})}" class="remove">Remove</a>
+                        <input type="submit" value="Delete from Cart" th:id="${cartItem.book.id}" onclick="DeleteCart">
+                    <!--    <a th:href="@{/removeCart(id=${cartItem.book.id})}" class="remove">Remove</a> -->
                     </td>
                     <td class="price" th:text="${cartItem.book.getListPrice()}">&dollar;16</td>
                     <td class="quantity">
@@ -74,9 +85,9 @@
                 <span class="price" th:text="${shoppingCart.grandTotal}">&dollar;233</span>
             </div>
             <div class="buttons">
-                <input name="placeorder" type="submit" value="Place Order">
+                <input name="placeorder" type="submit" value="Place Order onclick="placeOrder">
             </div>
-        </form>
+        </div>
     </div>
 </main>
 <footer>
@@ -133,7 +144,7 @@
                 </div>
                 <div class="buttons">
                     <input type="submit" value="Update" name="update">
-                    <input type="submit" value="Place Order" name="placeorder">
+                    <input type="submit" value="Place Order" name="placeorder" onclick="placeOrder">
                     <input type="submit" value="Place Order With CheckLater" name="c_placeorder">
                 </div>
             </form>

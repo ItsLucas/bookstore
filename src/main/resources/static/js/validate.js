@@ -9,7 +9,7 @@ function ajax(url,token,onsuccess,onfail)
         {
             if (xmlhttp.status == 200)
             {
-                onsuccess();//成功
+                onsuccess(xmlhttp.responseText);//成功
             }
             else if(xmlhttp.status == 403)
             {
@@ -23,9 +23,10 @@ function validate(baseUrl){
     var token = document.cookie;
     if(token){
         ajax(baseUrl,token,
-            function (){
-            console.log("token valid");
-            return true;
+            function (resText){
+                console.log("token valid");
+                var data = JSON.parse(resText);
+                return data;
         },function (){
             console.log("token invalid");
             window.location.href="/login";
