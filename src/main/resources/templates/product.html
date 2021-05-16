@@ -10,7 +10,8 @@
 <body>
 <script>
     var data = init("../api/allproducts");
-    var books = data;
+    var username = data.username;
+    var books = data.books;
 </script>
 <header>
     <div class="content-wrapper">
@@ -21,28 +22,48 @@
             <a href="logout">Logout</a>
         </nav>
         <div class="link-icons">
-            <a href="vip"><p th:text="${user.username}" th:if="${user ne null}"></p>
+            <a href="vip"><p id="username"></p>
                 <a href="cart">
                     <i class="fas fa-shopping-cart"></i>
                 </a>
         </div>
     </div>
+
+    <script>
+        if(username) document.getElementById("username").innerHTML = username;
+    </script>
 </header>
 <main>
 
     <div class="products content-wrapper">
         <h1>Products</h1>
-        <div class="products-wrapper">
-            <a th:each="book : ${books}">
-                <a class="product" th:href="@{/productdetail(id=${book.id})}">
-                    <img alt="" height="200" th:src="@{/imgs/{num}.jpg(num=${book.id})}" width="200">
-                    <span class="name" th:text="${book.title}">123</span>
-                    <span class="price" th:text="${book.listPrice}">
-            </span>
-                </a></a>
+        <div id="products-wrapper" class="products-wrapper">
         </div>
     </div>
 </main>
+
+<script>
+    var div=document.getElementById("products-wrapper");
+    books.forEach(function (book){
+        var a = document.createElement("a");
+        a.className = 'product';
+        a.href=" /productdetail"+book.id;
+        var img = document.createElement("img");
+        img.height="200";
+        img.src="/imgs/"+book.id+".jpg";
+        img.width="200";
+        var span1 = document.createElement("span");
+        span1.className="name";
+        span1.innerHTML = book.title;
+        var span2 = document.createElement("span");
+        span2.classname="price";
+        span2.innerHTML = book.listPrice;
+        a.appendChild(img);
+        a.appendChild(span1);
+        a.appendChild(span2);
+        div.appendChild(a);
+    })
+</script>
 <footer>
     <div class="content-wrapper">
         <p>&copy; 2020, Bookstore Ltd.</p>

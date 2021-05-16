@@ -7,10 +7,10 @@
     <script src="../static/js/validate.js"></script>
 <<<<<<< HEAD
     <title>Bookstore Customer Portal</title>
-    <link rel="stylesheet" th:href="@{/styles/style.css}" type="text/css">
+    <link rel="stylesheet" href="/styles/style.css" type="text/css">
 =======
     <title>Foodie Customer Portal</title>
-    <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
+    <link href="/styles/style.css" rel="stylesheet" type="text/css">
 >>>>>>> master
     <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet">
     <script src="../static/js/placeOrder.js"></script>
@@ -34,12 +34,15 @@
             <a href="register">Register</a>
         </nav>
         <div class="link-icons">
-            <a href="vip"><p th:text="${user.username}" th:if="${user ne null}"></p>
+            <a href="vip"><p id="username"></p>
                 <a href="index">
                     <i class="fas fa-shopping-cart"></i> <span>0</span>
                 </a>
         </div>
     </div>
+    <script>
+        document.getElementById("username").innerHTML = user.username;
+    </script>
 </header>
 <main>
     <div class="cart content-wrapper">
@@ -54,38 +57,22 @@
                     <td>Total</td>
                 </tr>
                 </thead>
-                <tbody>
-                <tr th:each="cartItem : ${cartItems}">
-                    <td class="img">
-                        <a th:href="@{/productdetail(id=${cartItem.book.id})}">
-                            <img th:src="@{/imgs/{num}.jpg(num=${cartItem.getBook().getId()})}" width="50" height="50"
-                                 alt="">
-                        </a>
-                    </td>
-                    <td>
-                        <a th:href="@{/productdetail(id=${cartItem.book.id})}"
-                           th:text="${cartItem.book.getTitle()}"></a>
-                        <br>
-                        <input type="submit" value="Delete from Cart" th:id="${cartItem.book.id}" onclick="DeleteCart">
-                    <!--    <a th:href="@{/removeCart(id=${cartItem.book.id})}" class="remove">Remove</a> -->
-                    </td>
-                    <td class="price" th:text="${cartItem.book.getListPrice()}">&dollar;16</td>
-                    <td class="quantity">
-                        <input type="number" name="quantity-F0019" value="1" min="1" max="99" placeholder="Quantity"
-                               required>
-                    </td>
-                    <td class="price" th:text="${cartItem.book.getListPrice()}">&dollar;16</td>
-                </tr>
+                <tbody id="cartItems">
                 </tbody>
             </table>
-            <div class="subtotal">
+            <div id="subtotal" class="subtotal">
                 <span class="text">Discount</span>
                 <span class="price">&dollar;0</span>
                 <span class="text">Subtotal</span>
-                <span class="price" th:text="${shoppingCart.grandTotal}">&dollar;233</span>
+                <span class="price" id="subprice">&dollar;233</span>
             </div>
             <div class="buttons">
                 <input name="placeorder" type="submit" value="Place Order onclick="placeOrder">
+                <script>
+                    function placeOrder(){
+                    validate("../api/placeorder");
+                }
+                </script>
             </div>
         </div>
     </div>
@@ -95,6 +82,56 @@
         <p>&copy; 2020, Bookstore Ltd.</p>
     </div>
 </footer>
+<script>
+    var tbody=document.getElementById("cartItems");
+    cartItems.forEach(function (cartItem){
+        var tr = document.createElement("tr");
+        var td = document.createElement("td");
+        td.className = "img";
+        var a = document.createElement("a");
+        a.href = "/productdetail"+cartItem.book.id;
+        var img = document.createElement("img");
+        img.src="/imgs/"+cartItem.getBook().getId()+".jpg";
+        img.width="50";
+        img.height="50";
+        a.appendChild(img);
+        td.appendChild(a);
+        tr.appendChild(td);
+
+        var td = document.createElement("td");
+        var a = document.createElement("a");
+        a.href = "/productdetail"+cartItem.book.id;
+        a.innerHTML = cartItem.book.getTitle();
+        var input = document.createElement("input");
+        input.type="submit";
+        input.value="Delete from Cart";
+        input.id=cartItem.book.id;
+        input.onclick="DeleteCart";
+        a.appendChild(input);
+        td.appendChild(a);
+        tr.appendChild(td);
+
+        var td = document.createElement("td");
+        td.className="price";
+        td.innerHTML = cartItem.book.getListPrice()+"dollar";
+        tr.appendChild(td);
+
+        var td = document.createElement("td");
+        td.className="quantity";
+        var input = document.createElement("input");
+        input.type="number";
+        input.name="quantity-F0019";
+        input.value="1";
+        input.placeholder="Quantity";
+        td.appendChild(input);
+        tr.appendChild(td);
+
+        tbody.appendChild(tr);
+    })
+
+    var subprice = document.getElementById("subprice");
+    subprice.innerHTML = shoppingCart.grandTotal;
+</script>
 =======
     <header>
         <div class="content-wrapper">

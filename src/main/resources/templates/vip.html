@@ -7,15 +7,15 @@
     <script src="../static/js/validate.js"></script>
 <<<<<<< HEAD
     <title>Bookstore Customer Portal</title>
-    <link rel="stylesheet" th:href="@{/styles/style.css}" type="text/css">
+    <link rel="stylesheet" href="/styles/style.css" type="text/css">
 =======
     <title>Foodie Customer Portal</title>
-    <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
+    <link href=/styles/style.css" rel="stylesheet" type="text/css">
 >>>>>>> master
     <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet">
-    <script type="text/javascript" th:src="@{/js/Data.js}"></script>
-    <link rel="stylesheet" th:href="@{/styles/Common.css}" />
-    <link rel="stylesheet" th:href="@{/styles/Data.css}">
+    <script type="text/javascript" src="/js/Data.js"></script>
+    <link rel="stylesheet" href="/styles/Common.css" />
+    <link rel="stylesheet" href="/styles/Data.css">
 
 
 
@@ -38,12 +38,15 @@
             <a href="logout">Logout</a>
         </nav>
         <div class="link-icons">
-            <a href="vip"><p th:text="${user.username}" th:if="${user ne null}"></p>
+            <a href="vip"><p id="username" ></p>
                 <a href="cart">
                     <i class="fas fa-shopping-cart"></i> <span>0</span>
                 </a>
         </div>
     </div>
+    <script>
+        if(user) document.getElementById("username").innerHTML = user.username;
+    </script>
 </header>
 <div class="Content">
     <div class="Left" id="Left">
@@ -59,15 +62,25 @@
             <ul>
                 <li>
                     <span class="Detail-4-Left">顾客ID</span>
-                    <td th:text="${user.id}">xxx</td>
+                    <td id="user_id">xxx</td>
                 </li>
                 <li>
                     <span class="Detail-4-Left">顾客名称</span>
-                    <td th:text="${user.username}">xxx</td>
+                    <td id="user_name">xxx</td>
                 </li>
                 <li>
                     <span class="Detail-4-Left">电话</span>
-                    <td th:text="${user.phone}">xxx</td>
+                    <td id="user_phone">xxx</td>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+    if(user) document.getElementById("user_name").innerHTML = user.username;
+    if(user) document.getElementById("user_id").innerHTML = user.id;
+    if(user) document.getElementById("user_phone").innerHTML = user.phone;
+</script>
 =======
     <header>
         <div class="content-wrapper">
@@ -86,7 +99,7 @@
     </header>
     <div class="Content">
         <div class="Left" id="Left">
-            <ul>
+            <ul id="orders">
                 <li class="Select">
                     <a href="#">账户信息</a>
 >>>>>>> master
@@ -95,10 +108,20 @@
                     <a href="#">我的订单</a>
                 </li>
 <<<<<<< HEAD
-                <li th:each="order : ${orders}">
-                    <span class="Detail-4-Left" th:text="订单信息"></span>
-                    <td th:text="|订单编号: ${order.id} 订单价格: ${order.orderTotal} 订单日期: ${order.getOrderDate()}|">xxx</td>
-                </li>
+                <script>
+                    var ul = document.getElementById("orders");
+                    orders.forEach(function (order){
+                        var li=document.createElement("li");
+                        var span = document.createElement("span");
+                        span.className="Detail-4-Left";
+                        span.innerHTML="订单信息";
+                        var td = document.createElement("td");
+                        td.innerHTML="|订单编号: "+order.id+" 订单价格: "+order.orderTotal+" 订单日期: "+order.getOrderDate()+"|";
+                        li.appendChild(span);
+                        li.appendChild(td);
+                        ul.appendChild(li);
+                    })
+                </script>
             </ul>
 =======
                 <li>
@@ -112,26 +135,34 @@
                 <ul>
                     <li>
                         <span class="Detail-4-Left">顾客ID</span>
-                        <td th:text="${user.username}">xxx</td>
+                        <td id="td_userid">xxx</td>
                     </li>
                     <li>
                         <span class="Detail-4-Left">顾客名称</span>
-                        <td th:text="${user.id}">xxx</td>
+                        <td  id="td_username">xxx</td>
                     </li>
                     <li>
                         <span class="Detail-4-Left">电话</span>
-                        <td th:text="${user.phone}">xxx</td>
+                        <td  id="td_userphone">xxx</td>
                     </li>
                     <li>
                         <span class="Detail-4-Left">邮箱</span>
-                        <td th:text="${user.email}">xxx</td>
+                        <td  id="td_useremail">xxx</td>
                     </li>
                     <li>
                         <span class="Detail-4-Left">密码</span>
-                        <td th:text="${user.password}">xxx</td>
+                        <td  id="td_userpsw">xxx</td>
                     </li>
                 </ul>
             </div>
+
+            <script>
+                if(user) document.getElementById("td_username").innerHTML = user.username;
+                if(user) document.getElementById("td_userid").innerHTML = user.id;
+                if(user) document.getElementById("td_userphone").innerHTML = user.phone;
+                if(user) document.getElementById("td_useremail").innerHTML = user.email;
+                if(user) document.getElementById("td_userpsw").innerHTML = user.password;
+            </script>
             <div class="Details Detail-1" style="display:none;">
                 <p class="AboutUS">我的订单</p>
                 <ul>
@@ -148,17 +179,46 @@
                                 <td>交易状态</td>
                                 <td>付款方式</td>
                             </tr>
-                            <tr th:each="cartItem : ${order.getCartItemList()}">
-                                <td th:href="@{/productdetail(id=${cartItem.book.id})}" th:text="${cartItem.book.title}">
-                                    商品信息
-                                    <img th:src="@{/imgs/{num}.jpg(num=${cartItem.book.id})}" width="200" height="200" alt="">
-                                </td>
-                                <td th:text="${cartItem.book.listPrice}">单价</td>
-                                <td th:text="${cartItem.qty}">数量</td>
-                                <td th:text="${cartItem.subtotal}">实付款</td>
-                                <td th:text="${order.orderStatus}">交易状态</td>
-                                <td th:text="${order.shippingMethod}">付款方式</td>
-                            </tr>
+                            <script>
+                                var table=document.getElementById("TopTR");
+                                orders.forEach(function (order){
+                                    order.getCartItemList().forEach(function (cartItem){
+                                        var tr = document.createElement("tr");
+
+                                        var td = document.createElement("td");
+                                        td.href="/productdetail"+cartItem.book.id;
+                                        td.innerHTML=cartItem.book.title;
+                                        var img = document.createElement("img");
+                                        img.src="/imgs/"+cartItem.book.id+".jpg";
+                                        img.width="200";
+                                        img.height="200";
+                                        tr.appendChild(td);
+
+                                        var td = document.createElement("td");
+                                        td.innerHTML=cartItem.book.listPrice;
+                                        tr.appendChild(td);
+
+                                        var td = document.createElement("td");
+                                        td.innerHTML=cartItem.book.qty;
+                                        tr.appendChild(td);
+
+                                        var td = document.createElement("td");
+                                        td.innerHTML=cartItem.book.subtotal;
+                                        tr.appendChild(td);
+
+                                        var td = document.createElement("td");
+                                        td.innerHTML=order.orderStatus;
+                                        tr.appendChild(td);
+
+                                        var td = document.createElement("td");
+                                        td.innerHTML=order.shippingMethod;
+                                        tr.appendChild(td);
+
+                                        table.appendChild(tr);
+                                    })
+                                })
+
+                            </script>
                         </table>
                     </li>
                     <li>

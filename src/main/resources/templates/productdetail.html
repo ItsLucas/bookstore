@@ -5,12 +5,13 @@
     <title>Index</title>
     <link rel="stylesheet" th:href="@{/styles/style.css}" type="text/css">
     <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet">
-    <script src="../static/js/init.js"></script>
     <script src="../static/js/addCart.js"></script>
+    <script src="../static/js/validate.js"></script>
 </head>
 <body>
 <script>
-    var data = init("../api/productdetail");
+    var data = validate("../api/productdetail");
+    var user;
     var book = data;
 </script>
 <header>
@@ -22,28 +23,31 @@
             <a href="logout">Logout</a>
         </nav>
         <div class="link-icons">
-            <a href="vip"><p th:text="${user.username}" th:if="${user ne null}"></p>
+            <a href="vip"><p id="username"></p>
                 <a href="cart">
                     <i class="fas fa-shopping-cart"></i>
                 </a>
         </div>
     </div>
+    <script>
+        if(user) document.getElementById("username").innerHTML = user.username;
+    </script>
 </header>
 <main>
     <div class="product content-wrapper">
-        <img alt="" height="500" th:src="@{/imgs/{num}.jpg(num=${book.id})}" width="500">
+        <img alt="" height="500" width="500">
         <div>
-            <h1 class="name" th:text="${book.title}">testname</h1>
-            <span class="price" th:text="${book.listPrice}">
+            <h1 class="name" >testname</h1>
+            <span class="price">
             &dollar;233
         </span>
-            <div class="description" th:text="${book.description}">
+            <div class="description">
                 net weight is: 233 g
             </div>
             <div>
                 <input max="<?=$product['quantity']?>" min="1" name="quantity" placeholder="Quantity" required
                        type="number" value="1">
-                <input name="product_id" th:value="${book.id}" type="hidden">
+                <input name="product_id"  type="hidden">
                 <input type="submit" value="Add To Cart" onclick="addCart">
                 <style>
                     #VIP {
@@ -99,6 +103,15 @@
         </div>
     </div>
 
+    <script>
+        document.getElementsByTagName("img")[0].src = "/imgs/"+book.id+".jpg";
+        document.getElementsByTagName("h1")[0].innerHTML = book.title;
+        document.getElementsByTagName("span")[0].innerHTML = book.listPrice;
+
+        document.getElementsByClassName("description")[0].innerHTML=book.description;
+
+        document.getElementById("product_id").value=book.id;
+    </script>
 </main>
 <footer>
     <div class="content-wrapper">
