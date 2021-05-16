@@ -5,5 +5,5 @@ import me.itslucas.bookstore.domain.User;
 import org.springframework.data.repository.CrudRepository;
 
 public interface ShoppingCartRepository extends CrudRepository<ShoppingCart, Long> {
-    public ShoppingCart findShoppingCartByUser(User user);
+    ShoppingCart findShoppingCartByUser(User user);
 }

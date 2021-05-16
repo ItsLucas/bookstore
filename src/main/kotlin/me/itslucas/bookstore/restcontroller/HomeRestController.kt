@@ -33,19 +33,19 @@ class HomeRestController {
     @GetMapping("/api/index")
     fun index(principal: Principal?): List<Book> {
         val books = bookRepository!!.findAll(PageRequest.of(0, 4)).toList()
-        return books;
+        return books
     }
 
     @GetMapping("/api/allproducts")
     fun products(principal: Principal?): List<Book> {
         val books = bookRepository!!.findAll().toList()
-        return books;
+        return books
     }
 
     @GetMapping("/api/productdetail")
     fun producttest(principal: Principal?, @RequestParam(name = "id") id: Long): Book {
         val book = bookRepository!!.findById(id).get()
-        return book;
+        return book
     }
 
     @GetMapping("/api/userinfo")

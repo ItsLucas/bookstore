@@ -41,10 +41,10 @@ class ShoppingCartRestController {
     fun shoppingCart(principal: Principal?): List<CartItem>? {
         //val principal = SecurityContextHolder.getContext().authentication.principal as UserDetails;
         var user = userService!!.findByUsername(principal!!.name)
-        var shoppingCart = user.shoppingCart;
+        var shoppingCart = user.shoppingCart
 
         var cartItemList = cartItemService?.findByShoppingCart(shoppingCart)?.toList()
-        shoppingCartService?.updateShoppingCart(shoppingCart);
+        shoppingCartService?.updateShoppingCart(shoppingCart)
         if (cartItemList != null) {
             for (cartItem in cartItemList) {
                 cartItem.shoppingCart = null
@@ -62,7 +62,7 @@ class ShoppingCartRestController {
         principal: Principal?
     ): String {
         val user: User = userService!!.findByUsername(principal!!.name)
-        val book = id?.let { bookService?.findById(it) };
+        val book = id?.let { bookService?.findById(it) }
         val cartItem = cartItemService!!.addBookToCartItem(book?.get(), user, 1)
         return "Success"
     }
@@ -74,8 +74,8 @@ class ShoppingCartRestController {
         val user = userService?.findByUsername(principal?.name)
         val cartItemList = cartItemService!!.findByShoppingCart(user!!.shoppingCart)
         orderService?.createOrder(user.shoppingCart, user)
-        shoppingCartService?.clearShoppingCart(user.shoppingCart);
-        return "ordersuccess";
+        shoppingCartService?.clearShoppingCart(user.shoppingCart)
+        return "ordersuccess"
     }
 
     @GetMapping("/api/removeCart")
@@ -84,7 +84,7 @@ class ShoppingCartRestController {
         principal: Principal?
     ): String {
         var mav: ModelAndView? = null
-        val user: User = userService!!.findByUsername(principal!!.getName())
+        val user: User = userService!!.findByUsername(principal!!.name)
         val cartItem = cartItemService!!.findByShoppingCart(shoppingCartService?.getByName(user))
         return "deletesuccess"
     }

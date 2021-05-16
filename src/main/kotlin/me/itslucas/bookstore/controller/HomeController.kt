@@ -28,7 +28,7 @@ class HomeController {
         val books = bookRepository!!.findAll(PageRequest.of(0, 4)).toList()
         model.addAttribute("books", books)
         val user = userService?.findByUsername(principal?.name)
-        model?.addAttribute("user", user);
+        model.addAttribute("user", user)
         return "index"
     }
 
@@ -37,7 +37,7 @@ class HomeController {
         val books = bookRepository!!.findAll(PageRequest.of(0, 4)).toList()
         model.addAttribute("books", books)
         val user = userService?.findByUsername(principal?.name)
-        model?.addAttribute("user", user);
+        model.addAttribute("user", user)
         return "index"
     }
 
@@ -45,7 +45,7 @@ class HomeController {
     fun product(model: Model, principal: Principal?): String {
         model.addAttribute("books", bookRepository!!.findAll())
         val user = userService?.findByUsername(principal?.name)
-        model?.addAttribute("user", user);
+        model.addAttribute("user", user)
         return "product"
     }
 
@@ -54,17 +54,17 @@ class HomeController {
         val book = bookRepository!!.findById(id).get()
         model.addAttribute("book", book)
         val user = userService?.findByUsername(principal?.name)
-        model?.addAttribute("user", user);
+        model.addAttribute("user", user)
         return "productdetail"
     }
 
     @GetMapping("/vip")
     fun viptest(model: Model?, principal: Principal?): String {
         val user = userService?.findByUsername(principal?.name)
-        model?.addAttribute("user", user);
-        val orders = orderService?.getOrders(user);
+        model?.addAttribute("user", user)
+        val orders = orderService?.getOrders(user)
 
-        model?.addAttribute("orders", orders);
+        model?.addAttribute("orders", orders)
         return "vip"
     }
 }

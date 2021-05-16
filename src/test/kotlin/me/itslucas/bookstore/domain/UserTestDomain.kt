@@ -5,6 +5,4 @@ class UserTestDomain(
     private var password: String?,
     var email: String?,
     var phone: String?
-) {
-
-}
+)

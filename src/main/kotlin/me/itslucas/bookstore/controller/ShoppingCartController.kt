@@ -38,13 +38,13 @@ class ShoppingCartController {
     fun shoppingCart(model: Model?, principal: Principal?): String {
         //val principal = SecurityContextHolder.getContext().authentication.principal as UserDetails;
         var user = userService!!.findByUsername(principal!!.name)
-        var shoppingCart = user.shoppingCart;
+        var shoppingCart = user.shoppingCart
 
-        var cartItemList = cartItemService?.findByShoppingCart(shoppingCart);
+        var cartItemList = cartItemService?.findByShoppingCart(shoppingCart)
 
-        shoppingCartService?.updateShoppingCart(shoppingCart);
-        model?.addAttribute("user", user);
-        model?.addAttribute("cartItems", cartItemList);
+        shoppingCartService?.updateShoppingCart(shoppingCart)
+        model?.addAttribute("user", user)
+        model?.addAttribute("cartItems", cartItemList)
         model?.addAttribute("shoppingCart", shoppingCart)
         return "cart"
     }
@@ -58,9 +58,9 @@ class ShoppingCartController {
     ): ModelAndView {
         var mav: ModelAndView? = null
 
-        val user: User = userService!!.findByUsername(principal!!.getName())
-        val book = id?.let { bookService?.findById(it) };
-        mav = ModelAndView("product");
+        val user: User = userService!!.findByUsername(principal!!.name)
+        val book = id?.let { bookService?.findById(it) }
+        mav = ModelAndView("product")
         val cartItem = cartItemService!!.addBookToCartItem(book?.get(), user, 1)
         return mav
     }
@@ -73,9 +73,9 @@ class ShoppingCartController {
         val user = userService?.findByUsername(principal?.name)
         val cartItemList = cartItemService!!.findByShoppingCart(user!!.shoppingCart)
         orderService?.createOrder(user.shoppingCart, user)
-        shoppingCartService?.clearShoppingCart(user.shoppingCart);
-        model?.addAttribute("user", user);
-        return "ordersuccess";
+        shoppingCartService?.clearShoppingCart(user.shoppingCart)
+        model?.addAttribute("user", user)
+        return "ordersuccess"
     }
 
     @GetMapping("/removeCart")
@@ -85,9 +85,9 @@ class ShoppingCartController {
             principal: Principal?
     ): ModelAndView {
         var mav: ModelAndView? = null
-        val user: User = userService!!.findByUsername(principal!!.getName())
+        val user: User = userService!!.findByUsername(principal!!.name)
 
-        mav = ModelAndView("product");
+        mav = ModelAndView("product")
         val cartItem = cartItemService!!.findByShoppingCart(shoppingCartService?.getByName(user))
 
         return mav

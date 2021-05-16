@@ -15,7 +15,7 @@ function ajax(url,data,token,onsuccess,onfail)
             else
             {
                 onfail(xmlhttp.status);//失败
-                return ;
+
             }
         }
     }
