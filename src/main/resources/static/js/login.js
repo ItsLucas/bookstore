@@ -24,7 +24,7 @@ function loginClick(){
     var name = document.getElementById("username").value;
     var psw = document.getElementById("password").value;
     if (psw != "" && name != "") {
-        ajax("../login?userName=" + name + "&password=" + psw,
+        ajax("http://localhost:8080/login?userName=" + name + "&password=" + psw,
             function (resText,token) {
                 if (resText == "fail") {
                     alert("用户名或密码错误！");

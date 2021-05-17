@@ -3,32 +3,22 @@
 
 <head>
     <meta charset="utf-8">
-<<<<<<< VALIDATE
     <script src="../static/js/validate.js"></script>
-<<<<<<< HEAD
     <title>Bookstore Customer Portal</title>
     <link rel="stylesheet" href="/styles/style.css" type="text/css">
-=======
-    <title>Foodie Customer Portal</title>
-    <link href=/styles/style.css" rel="stylesheet" type="text/css">
->>>>>>> master
     <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet">
     <script type="text/javascript" src="/js/Data.js"></script>
     <link rel="stylesheet" href="/styles/Common.css" />
     <link rel="stylesheet" href="/styles/Data.css">
 
-
-
 </head>
 
 <body>
-<<<<<<< VALIDATE
 <script>
     var data = validate("../api/userinfo");
     var user = data.user;
     var orders = data.orders;
 </script>
-<<<<<<< HEAD
 <header>
     <div class="content-wrapper">
         <h1>Bookstore</h1>
@@ -42,6 +32,7 @@
                 <a href="cart">
                     <i class="fas fa-shopping-cart"></i> <span>0</span>
                 </a>
+            </a>
         </div>
     </div>
     <script>
@@ -81,7 +72,6 @@
     if(user) document.getElementById("user_id").innerHTML = user.id;
     if(user) document.getElementById("user_phone").innerHTML = user.phone;
 </script>
-=======
     <header>
         <div class="content-wrapper">
             <h1>Foodie</h1>
@@ -102,12 +92,10 @@
             <ul id="orders">
                 <li class="Select">
                     <a href="#">账户信息</a>
->>>>>>> master
                 </li>
                 <li>
                     <a href="#">我的订单</a>
                 </li>
-<<<<<<< HEAD
                 <script>
                     var ul = document.getElementById("orders");
                     orders.forEach(function (order){
@@ -123,7 +111,6 @@
                     })
                 </script>
             </ul>
-=======
                 <li>
                     <a href="#">修改信息</a>
                 </li>
@@ -405,7 +392,6 @@
                     </li>
                 </ul>
             </div>
->>>>>>> master
         </div>
     </div>
 </body>
