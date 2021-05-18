@@ -1,2 +1,2 @@
 # bookstore
-JavaEE homework 1
+JavaEE homework 2
