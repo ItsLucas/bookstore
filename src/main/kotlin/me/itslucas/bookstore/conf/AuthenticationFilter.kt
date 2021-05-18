@@ -53,6 +53,7 @@ class AuthenticationFilter(@get:JvmName("authenticationManager") private val aut
         val claims = Jwts.claims().setSubject((auth.principal as User).username)
         val token =
             Jwts.builder().setClaims(claims).signWith(key, SignatureAlgorithm.HS512).setExpiration(exp).compact()
+        res.addHeader("Access-Control-Expose-Headers", "token")
         res.addHeader("token", token)
     }
 }

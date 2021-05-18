@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <script src="../static/js/validate.js"></script>
+    <title>Bookstore Customer Portal</title>
+    <title>Foodie Customer Portal</title>
+    <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/styles/Common.css">
+    <link rel="stylesheet" href="../static/styles/Data.css">
+    <link rel="stylesheet" href="../static/styles/style.css">
+    <script src="../static/js/Data.js"></script>
+
+
+</head>
+
+<body>
+<header>
+    <div class="content-wrapper">
+        <h1>Bookstore</h1>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="../product.html">Products</a>
+            <a href="logout">Logout</a>
+        </nav>
+        <div class="link-icons">
+            <a href="../vip.html"><p id="username" ></p>
+                <a href="../cart.html">
+                    <i class="fas fa-shopping-cart"></i> <span>0</span>
+                </a>
+        </div>
+    </div>
+
+    <script>
+        validate("https://itslucas.me/users/current",initUsername);
+        function initUsername(data){
+            if(data) document.getElementById("username").innerHTML = data;
+        }
+
+        function showChange(){
+            usershow = document.getElementById("user-show");
+            ordershow = document.getElementById("order-show");
+            ordershow.style.display=='none'?ordershow.style.display="table":ordershow.style.display='none';
+            usershow.style.display=='none'?usershow.style.display="table":usershow.style.display='none';
+
+        }
+    </script>
+</header>
+<div class="Content">
+    <div class="Left" id="Left">
+        <ul>
+            <li class="Select">
+                <a href="#"  onclick="showChange()">账户信息</a>
+            </li>
+            <li>
+                <a href="#" onclick="showChange()">我的订单</a>
+            </li>
+        </ul>
+    </div>
+    <div class="Right" id="Right">
+        <div id="user-show" class="Details Detail-4" style="display:block;">
+            <p class="AboutUS">账户信息</p>
+            <ul>
+                <li>
+                    <span class="Detail-4-Left">顾客ID</span>
+                    <span id="user_id"></span>
+                </li>
+                <li>
+                    <span class="Detail-4-Left">顾客名称</span>
+                    <span id="user_name"></span>
+                </li>
+                <li>
+                    <span class="Detail-4-Left">电话</span>
+                    <span id="user_phone"></span>
+                </li>
+            </ul>
+        </div>
+        <div id="order-show" class="Details Detail-4" style="display:none;">
+            <p class="AboutUS">订单信息</p>
+            <table id="orderTable">
+                <tr>
+                    <td style="width: 20%">
+                        订单编号
+                    </td>
+                    <td style="width: 20%">订单日期</td>
+                    <td style="width: 20%">实付款</td>
+                    <td style="width: 20%">交易状态</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+</script>
+    <header>
+        <div class="content-wrapper">
+            <h1>Foodie</h1>
+            <nav>
+                <a href="index">Home</a>
+                <a href="product">Products</a>
+                <a href="logout">Logout</a>
+            </nav>
+            <div class="link-icons">
+                <a href="cart">
+                    <i class="fas fa-shopping-cart"></i> <span>0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+    <div class="Content">
+        <div class="Left" id="Left">
+            <ul id="orders">
+                <li class="Select">
+                    <a href="#">账户信息</a>
+                </li>
+                <li>
+                    <a href="#">我的订单</a>
+                </li>
+                <script>
+
+                </script>
+            </ul>
+                <li>
+                    <a href="#">修改信息</a>
+                </li>
+            </ul>
+        </div>
+        <div class="Right" id="Right">
+            <div class="Details Detail-4" style="display:block;">
+                <p class="AboutUS">账户信息</p>
+                <ul>
+                    <li>
+                        <span class="Detail-4-Left">顾客ID</span>
+                        <td id="td_userid"></td>
+                    </li>
+                    <li>
+                        <span class="Detail-4-Left">顾客名称</span>
+                        <td  id="td_username"></td>
+                    </li>
+                    <li>
+                        <span class="Detail-4-Left">电话</span>
+                        <td  id="td_userphone">xxx</td>
+                    </li>
+                    <li>
+                        <span class="Detail-4-Left">邮箱</span>
+                        <td  id="td_useremail">xxx</td>
+                    </li>
+                    <li>
+                        <span class="Detail-4-Left">密码</span>
+                        <td  id="td_userpsw">xxx</td>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="Details Detail-1" style="display:none;">
+                <p class="AboutUS">我的订单</p>
+                <ul>
+                    <li>
+                        <table id="TopTR">
+                            <tr>
+                                <td>
+                                    商品信息
+                                </td>
+                                <td>单价</td>
+                                <td>数量</td>
+                                <td>商品操作</td>
+                                <td>实付款</td>
+                                <td>交易状态</td>
+                                <td>付款方式</td>
+                            </tr>
+
+                        </table>
+                    </li>
+                    <li>
+                        <a class="Delect2">
+                            <table id="TR_2">
+                                <tr>
+                                  <!--  <td><img src="../img/imgcon1.jpg" /></td>-->
+                                    <td>
+                                        <p style="text-decoration: line-through;color:gray;">￥999.00</p>
+                                        <p>￥799.00</p>
+                                    </td>
+                                    <td>
+                                        <p>1</p>
+                                    </td>
+                                    <td>
+                                        <p>申请售后</p>
+                                    </td>
+                                    <td>
+                                        <p>￥799.00</p>
+                                        <p style="color:gray;">（含运费：￥0.00）</p>
+                                    </td>
+
+                                    <td>
+                                        <p>交易成功</p>
+                                        <p>订单详情</p>
+                                    </td>
+                                    <td>
+                                        <p>xxx</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </a>
+                        <a class="Delect">
+                            <span><input type="checkbox" value=""/></span>
+                            <span>2018-01-15</span>
+                            <span>订单号：xxx</span>
+                            <span>券折扣：xxx</span>
+                            <span>节日折扣：xxx</span>
+                            <span>使用福豆：xxx</span>
+                            <span>会员折扣:xxx</span>
+                            <span>实付款:xxx</span>
+                          <!--  <img src="../img/垃圾箱.svg" style="width:30px;height:30px;position:absolute;right:15px;top:10px;" />
+
+    -->                    </a>
+                    </li>
+                    <li>
+                        <a class="Delect2">
+                            <table id="TR_2">
+                                <tr>
+                                <!--    <td><img src="../img/imgcon1.jpg" /></td>
+                                  -->  <td>
+                                        <p style="text-decoration: line-through;color:gray;">￥999.00</p>
+                                        <p>￥799.00</p>
+                                    </td>
+                                    <td>
+                                        <p>1</p>
+                                    </td>
+                                    <td>
+                                        <p>申请售后</p>
+                                    </td>
+                                    <td>
+                                        <p>￥799.00</p>
+                                        <p style="color:gray;">（含运费：￥0.00）</p>
+                                    </td>
+
+                                    <td>
+                                        <p>交易成功</p>
+                                        <p>订单详情</p>
+                                    </td>
+                                    <td>
+                                        <p>xxx</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </a>
+                        </a>
+                        <a class="Delect">
+                            <span><input type="checkbox" value=""/></span>
+                            <span>2018-01-15</span>
+                            <span>订单号：xxx</span>
+                            <span>券折扣：xxx</span>
+                            <span>节日折扣：xxx</span>
+                            <span>使用福豆：xxx</span>
+                            <span>会员折扣:xxx</span>
+                            <span>实付款:xxx</span>
+                     <!--       <img src="../img/垃圾箱.svg" style="width:30px;height:30px;position:absolute;right:15px;top:10px;" />
+-->
+                        </a>
+                    </li>
+                    <li>
+                        <a class="Delect2">
+                            <table id="TR_2">
+                                <tr>
+                            <!--        <td><img src="../img/imgcon1.jpg" /></td>-->
+                                    <td>
+                                        <p style="text-decoration: line-through;color:gray;">￥999.00</p>
+                                        <p>￥799.00</p>
+                                    </td>
+                                    <td>
+                                        <p>1</p>
+                                    </td>
+                                    <td>
+                                        <p>申请售后</p>
+                                    </td>
+                                    <td>
+                                        <p>￥799.00</p>
+                                        <p style="color:gray;">（含运费：￥0.00）</p>
+                                    </td>
+
+                                    <td>
+                                        <p>交易成功</p>
+                                        <p>订单详情</p>
+                                    </td>
+                                    <td>
+                                        <p>xxx</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </a>
+                        <a class="Delect">
+                            <span><input type="checkbox" value=""/></span>
+                            <span>2018-01-15</span>
+                            <span>订单号：xxx</span>
+                            <span>券折扣：xxx</span>
+                            <span>节日折扣：xxx</span>
+                            <span>使用福豆：xxx</span>
+                            <span>会员折扣:xxx</span>
+                            <span>实付款:xxx</span>
+                            <img src="../img/垃圾箱.svg" style="width:30px;height:30px;position:absolute;right:15px;top:10px;" />
+
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="Details Detail-6" style="display:none;">
+                <p class="AboutUS">修改信息</p>
+                <ul>
+                    <li>
+                        <span class="Detail-4-Left">顾客名称</span>
+                        <td><input type="text" th:placeholder="${user.username}" /></td>
+                    </li>
+                    <li style="background-color: white;">
+                        <input class=" BaoCun" type="button" value="保存" />
+                    </li>
+                    <li>
+                        <span class="Detail-4-Left"><b>*</b>性别</span>
+                        <input style="height:18px;width:18px;" type="radio" value="男" />男
+                        <input style="height:18px;width:18px;" type="radio" value="女" />女
+                        <input style="height:18px;width:18px;" type="radio" value="保密" />保密
+                    </li>
+                    <li style="background-color: white;">
+                        <input class=" BaoCun" type="button" value="保存" />
+                    </li>
+                    <li>
+                        <span class="Detail-4-Left">生日</span>
+                        <input class="year" type="text" />年
+                        <input class="year" />月
+                        <input class="year" />日
+                    </li>
+                    <li style="background-color: white;">
+                        <input class=" BaoCun" type="button" value="保存" />
+                    </li>
+                    <li>
+                        <span class="Detail-4-Left" th:placeholder="${user.phone}">电话</span>
+                        <input type="text" />
+                    </li>
+                    <li style="background-color: white;">
+                        <input class=" BaoCun" type="button" value="保存" />
+                    </li>
+                    <li>
+                        <span class="Detail-4-Left" th:placeholder="${user.email}">邮箱</span>
+                        <input type="text" />
+                    </li>
+                    <li style="background-color: white;">
+                        <input class=" BaoCun" type="button" value="保存" />
+                    </li>
+                    <li>
+                        <span class="Detail-4-Left" th:placeholder="${user.password}">密码</span>
+                        <input type="text" />
+                    </li>
+                    <li style="background-color: white;">
+                        <input class=" BaoCun" type="button" value="保存" />
+                    </li>
+                </ul>
+            </div>
+>>>>>>> master
+        </div>
+    </div>
+</body>
+<script>
+    validate("https://itslucas.me/api/userinfo",init);
+    function init(JsonData){
+        console.log(JsonData);
+        var data = JSON.parse(JsonData);
+        var user = data.first;
+        var orders = data.second;
+
+        console.log(user);
+        console.log(orders);
+
+
+
+        console.log(user.username);
+        document.getElementById("user_name").innerHTML = user.username;
+        document.getElementById("user_id").innerHTML = user.id;
+        document.getElementById("user_phone").innerHTML = user.phone;
+
+        var ul = document.getElementById("orders");
+        orders.forEach(function (order){
+            var li=document.createElement("li");
+            var span = document.createElement("span");
+            span.className="Detail-4-Left";
+            span.innerHTML="订单信息";
+            var td = document.createElement("td");
+            td.innerHTML="|订单编号: "+order.id+" 订单价格: "+order.orderTotal+" 订单日期: "+order.getOrderDate+"|";
+            li.appendChild(span);
+            li.appendChild(td);
+            ul.appendChild(li);
+        });
+
+        var table=document.getElementById("orderTable");
+        orders.forEach(function (order){
+            var tr = document.createElement("tr");
+
+            var td = document.createElement("td");
+            td.innerHTML=order.id;
+            tr.appendChild(td);
+
+            var td = document.createElement("td");
+            td.innerHTML=order.orderDate;
+            tr.appendChild(td);
+
+            var td = document.createElement("td");
+            td.innerHTML=order.orderTotal;
+            tr.appendChild(td);
+
+            var td = document.createElement("td");
+            td.innerHTML=order.orderStatus;
+            tr.appendChild(td);
+
+
+            table.appendChild(tr);
+            /*
+            order.cartItemList.forEach(function (cartItem){
+
+                var td = document.createElement("td");
+                td.href="/productdetail"+cartItem.book.id;
+                td.innerHTML=cartItem.book.title;
+                var img = document.createElement("img");
+                img.src="/imgs/"+cartItem.book.id+".jpg";
+                img.width="200";
+                img.height="200";
+                tr.appendChild(td);
+
+                var td = document.createElement("td");
+                td.innerHTML=cartItem.book.listPrice;
+                tr.appendChild(td);
+
+                var td = document.createElement("td");
+                td.innerHTML=cartItem.book.qty;
+                tr.appendChild(td);
+
+                var td = document.createElement("td");
+                td.innerHTML=cartItem.book.subtotal;
+                tr.appendChild(td);
+
+
+            })
+            */
+        });
+
+
+       /* if(user) document.getElementById("td_username").innerHTML = user.username;
+        if(user) document.getElementById("td_userid").innerHTML = user.id;
+        if(user) document.getElementById("td_userphone").innerHTML = user.phone;
+        if(user) document.getElementById("td_useremail").innerHTML = user.email;
+        if(user) document.getElementById("td_userpsw").innerHTML = user.password;*/
+    }
+
+
+</script>
+</html>

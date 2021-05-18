@@ -1,7 +1,6 @@
 package me.itslucas.bookstore.restcontroller
 
 import me.itslucas.bookstore.domain.User
-import me.itslucas.bookstore.domain.security.UserRole
 import me.itslucas.bookstore.repository.RoleRepository
 import me.itslucas.bookstore.service.UserService
 import org.slf4j.LoggerFactory
@@ -56,7 +55,12 @@ class UserController(
 
     @GetMapping("/current")
     fun getCurrent(principal: Principal): String? {
-        return principal.name
+        var username = principal.name
+        var realString: String? = null
+        if (username.contains("=")) {
+            realString = username.substring(username.indexOf('=') + 1, username.indexOf(','))
+        } else realString = username
+        return realString
     }
 
     init {

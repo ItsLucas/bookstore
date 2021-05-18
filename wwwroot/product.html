@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>Index</title>
+    <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet">
+    <script src="../static/js/validate.js"></script>
+    <link rel="stylesheet" href="../static/styles/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="content-wrapper">
+            <h1>Bookstore</h1>
+            <nav>
+                <a href="index">Home</a>
+                <a href="product">Products</a>
+                <a href="logout">Logout</a>
+            </nav>
+            <div class="link-icons">
+                <a href="vip.html">
+                    <p id="username"></p>
+                    <a href="cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+            </div>
+        </div>
+    </header>
+    <main>
+
+        <div class="products content-wrapper">
+            <h1>Products</h1>
+            <div id="products-wrapper" class="products-wrapper">
+            </div>
+        </div>
+    </main>
+
+    <script>
+        var books;
+        validate("https://itslucas.me/api/index", init);
+        function init(data) {
+            books = JSON.parse(data);
+            console.log(books);
+            var div = document.getElementById("products-wrapper");
+            books.forEach(function (book) {
+                var a = document.createElement("a");
+                a.className = 'product';
+                a.href = " /productdetail.html?id=" + book.id;
+                var img = document.createElement("img");
+                img.height = "200";
+                img.src = "../static/imgs/" + book.id + ".jpg";
+                img.width = "200";
+                var span1 = document.createElement("span");
+                span1.className = "name";
+                span1.innerHTML = book.title;
+                var span2 = document.createElement("span");
+                span2.classname = "price";
+                span2.innerHTML = book.listPrice;
+                a.appendChild(img);
+                a.appendChild(span1);
+                a.appendChild(span2);
+                div.appendChild(a);
+            });
+        }
+        validate("https://itslucas.me/users/current", initUsername);
+        function initUsername(data) {
+            if (data) document.getElementById("username").innerHTML = data;
+        }
+    </script>
+    <footer>
+        <div class="content-wrapper">
+            <p>&copy; 2020, Bookstore Ltd.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
