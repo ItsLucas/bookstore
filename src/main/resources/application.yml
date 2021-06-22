@@ -8,6 +8,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+    show-sql: true
   dataSource:
     pooled: true
     jmxExport: true
