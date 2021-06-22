@@ -6,14 +6,14 @@ function ajax(url, token, onsuccess, onfail) {
         if (xmlhttp.readyState == 4) {
             if (xmlhttp.status == 200) {
                 onsuccess(xmlhttp.responseText);//成功
-            }
-            else if (xmlhttp.status == 403) {
+            } else if (xmlhttp.status == 403) {
                 onfail();//失败
             }
         }
     }
     xmlhttp.send(); //这时才开始发送请求
 }
+
 function validate(baseUrl, callback) {
     var arr = document.cookie.split("；");
     //  console.log(document.cookie);
@@ -36,11 +36,10 @@ function validate(baseUrl, callback) {
                 }
             }, function () {
                 console.log("token invalid");
-                 window.location.href="../login.html";
+                window.location.href = "/login.html";
             })
-    }
-    else {
+    } else {
         console.log("token null");
-         window.location.href = '../login.html';
+        window.location.href = '/login.html';
     }
 }

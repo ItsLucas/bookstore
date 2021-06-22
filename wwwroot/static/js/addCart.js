@@ -7,8 +7,7 @@ function A_ajax(url, data, token, onsuccess, onfail) {
         if (xmlhttp.readyState == 4) {
             if (xmlhttp.status == 200) {
                 onsuccess(xmlhttp.responseText);//成功
-            }
-            else {
+            } else {
                 onfail(xmlhttp.status);//失败
 
             }
@@ -16,6 +15,7 @@ function A_ajax(url, data, token, onsuccess, onfail) {
     }
     xmlhttp.send(data); //这时才开始发送请求
 }
+
 function addCart() {
 
     var arr = document.cookie.split("；");
@@ -43,8 +43,7 @@ function addCart() {
             if (resStatus == 403) {
                 console.log("token invalid");
                 window.location.href = "/login";
-            }
-            else {
+            } else {
                 console.log("addCart failed");
                 window.location.href = "/products";
             }

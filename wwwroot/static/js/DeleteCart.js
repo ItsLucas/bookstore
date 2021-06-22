@@ -7,8 +7,7 @@ function D_ajax(url, data, token, onsuccess, onfail) {
         if (xmlhttp.readyState == 4) {
             if (xmlhttp.status == 200) {
                 onsuccess(xmlhttp.responseText);//成功
-            }
-            else {
+            } else {
                 onfail(xmlhttp.status);//失败
 
             }
@@ -16,9 +15,10 @@ function D_ajax(url, data, token, onsuccess, onfail) {
     }
     xmlhttp.send(data); //这时才开始发送请求
 }
+
 function DeleteCart(e) {
     var product_id = e.target.id;
-    console.log("product_id"+product_id);
+    console.log("product_id" + product_id);
     var arr = document.cookie.split("；");
     var token;
     arr.forEach(function (cookie) {
@@ -39,11 +39,10 @@ function DeleteCart(e) {
         }, function (resStatus) {
             if (resStatus == 403) {
                 console.log("token invalid");
-                window.location.href = "../login.html";
-            }
-            else {
-                console.log("removeCart failed "+ resStatus);
-              //  window.location.href = "../product.html";
+                window.location.href = "/login.html";
+            } else {
+                console.log("removeCart failed " + resStatus);
+                //  window.location.href = "/product.html";
             }
         });
 }

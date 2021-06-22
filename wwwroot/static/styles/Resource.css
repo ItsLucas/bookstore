@@ -121,7 +121,7 @@ body {
 .Content ul li .Img {
     height: 150px;
     border-radius: 8px;
-    background-image: url(../img/11.jpg);
+    background-image: url(/img/11.jpg);
 }
 
 .Span {

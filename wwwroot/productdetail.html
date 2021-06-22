@@ -1,134 +1,136 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 
 <head>
     <meta charset="utf-8">
     <title>Index</title>
     <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet">
-    <script src="../static/js/addCart.js"></script>
-    <script src="../static/js/validate.js"></script>
-    <link rel="stylesheet" href="../static/styles/style.css">
+    <script src="/static/js/addCart.js"></script>
+    <script src="/static/js/validate.js"></script>
+    <link href="/static/styles/style.css" rel="stylesheet">
 </head>
 
 <body>
-    <header>
-        <div class="content-wrapper">
-            <h1>Bookstore</h1>
-            <nav>
-                <a href="index">Home</a>
-                <a href="product">Products</a>
-                <a href="logout">Logout</a>
-            </nav>
-            <div class="link-icons">
-                <a href="vip.html">
-                    <p id="username"></p>
-                    <a href="cart.html">
-                        <i class="fas fa-shopping-cart"></i>
-                    </a>
-            </div>
+<header>
+    <div class="content-wrapper">
+        <h1>Bookstore</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="product.html">Products</a>
+            <a href="logout">Logout</a>
+        </nav>
+        <div class="link-icons">
+            <a href="vip.html">
+                <p id="username"></p>
+                <a href="cart.html">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
         </div>
-        <script>
-            validate("https://itslucas.me/users/current", initUsername);
-            function initUsername(data) {
-                if (data) document.getElementById("username").innerHTML = data;
-            }
-        </script>
-    </header>
-    <main>
-        <div class="product content-wrapper">
-            <img alt="" height="500" width="500">
-            <div>
-                <h1 class="name">testname</h1>
-                <span class="price">
+    </div>
+    <script>
+        validate("https://itslucas.me/users/current", initUsername);
+
+        function initUsername(data) {
+            if (data) document.getElementById("username").innerHTML = data;
+        }
+    </script>
+</header>
+<main>
+    <div class="product content-wrapper">
+        <img alt="" height="500" width="500">
+        <div>
+            <h1 class="name">testname</h1>
+            <span class="price">
                     &dollar;233
                 </span>
-                <div class="description">
-                    net weight is: 233 g
-                </div>
-                <div>
-                    <input max="<?=$product['quantity']?>" min="1" id="quantity" name="quantity" placeholder="Quantity"
-                        required type="number" value="1">
-                    <input id="product_id" name="product_id" type="hidden">
-                    <input type="submit" value="Add To Cart" onclick="addCart()">
-                    <style>
-                        #vip.html {
-                            font-family: Arial, Helvetica, sans-serif;
-                            border-collapse: collapse;
-                            width: 100%;
-                            margin-top: 50px;
-                        }
+            <div class="description">
+                net weight is: 233 g
+            </div>
+            <div>
+                <input id="quantity" max="<?=$product['quantity']?>" min="1" name="quantity" placeholder="Quantity"
+                       required type="number" value="1">
+                <input id="product_id" name="product_id" type="hidden">
+                <input onclick="addCart()" type="submit" value="Add To Cart">
+                <style>
+                    #vip.html {
+                        font-family: Arial, Helvetica, sans-serif;
+                        border-collapse: collapse;
+                        width: 100%;
+                        margin-top: 50px;
+                    }
 
-                        #vip.html td,
-                        #vip.html th {
-                            border: 1px solid #ddd;
-                            padding: 8px;
-                            width: 50%;
-                        }
+                    #vip.html td,
+                    #vip.html th {
+                        border: 1px solid #ddd;
+                        padding: 8px;
+                        width: 50%;
+                    }
 
-                        #vip.html th {
-                            padding-top: 12px;
-                            padding-bottom: 12px;
-                            text-align: left;
-                            background-color: #4CAF50;
-                            color: white;
-                        }
+                    #vip.html th {
+                        padding-top: 12px;
+                        padding-bottom: 12px;
+                        text-align: left;
+                        background-color: #4CAF50;
+                        color: white;
+                    }
 
-                        #vip.html tr:nth-child(even) {
-                            background-color: #f2f2f2;
-                        }
+                    #vip.html tr:nth-child(even) {
+                        background-color: #f2f2f2;
+                    }
 
-                        #vip.html tr:hover {
-                            background-color: #ddd;
-                        }
-                    </style>
-                    <div class="content">
-                        <table id="vip.html">
-                            <tr>
-                                <th>用户</th>
-                                <th>分数</th>
-                                <th>评价</th>
-                            </tr>
-                            <tr>
-                                <td>test</td>
-                                <td>100</td>
-                                <td>good</td>
-                            </tr>
-                        </table>
-                        <ul>
-                            <li style="background-color: white;">
-                                <a href="comments.php?pid=<?=$_GET['id']?>">Comment</a>
-                            </li>
-                        </ul>
-                    </div>
+                    #vip.html tr:hover {
+                        background-color: #ddd;
+                    }
+                </style>
+                <div class="content">
+                    <table id="vip.html">
+                        <tr>
+                            <th>用户</th>
+                            <th>分数</th>
+                            <th>评价</th>
+                        </tr>
+                        <tr>
+                            <td>test</td>
+                            <td>100</td>
+                            <td>good</td>
+                        </tr>
+                    </table>
+                    <ul>
+                        <li style="background-color: white;">
+                            <a href="comments.php?pid=<?=$_GET['id']?>">Comment</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
+    </div>
 
-        <script>
-            //   var bookId =parseInt(window.location.search);
-            var bookId = 1;
-            var book;
-            validate("https://itslucas.me/api/productdetail?id=" + bookId, init);
-            function init(data) {
-                book = JSON.parse(data);
-                console.log(book);
+    <script>
+        //   var bookId =parseInt(window.location.search);
+        var bookId = 1;
+        var book;
+        validate("https://itslucas.me/api/productdetail?id=" + bookId, init);
 
-                document.getElementsByTagName("img")[0].src = "../static/imgs/" + book.id + ".jpg";
-                document.getElementsByTagName("h1")[1].innerHTML = book.title;
-                document.getElementsByTagName("span")[0].innerHTML = book.listPrice;
+        function init(data) {
+            book = JSON.parse(data);
+            console.log(book);
 
-                document.getElementsByClassName("description")[0].innerHTML = book.description;
+            document.getElementsByTagName("img")[0].src = "/static/imgs/" + book.id + ".jpg";
+            document.getElementsByTagName("h1")[1].innerHTML = book.title;
+            document.getElementsByTagName("span")[0].innerHTML = book.listPrice;
 
-                document.getElementById("product_id").value = book.id;
-            }
+            document.getElementsByClassName("description")[0].innerHTML = book.description;
 
-        </script>
-    </main>
-    <footer>
-        <div class="content-wrapper">
-            <p>&copy; 2020, Bookstore Ltd.</p>
-        </div>
-    </footer>
+            document.getElementById("product_id").value = book.id;
+        }
+
+    </script>
+</main>
+<footer>
+    <div class="content-wrapper">
+        <p>&copy; 2020, Bookstore Ltd.</p>
+    </div>
+</footer>
 </body>
 
 </html>

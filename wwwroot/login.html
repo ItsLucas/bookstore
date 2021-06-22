@@ -1,56 +1,56 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 
 <head>
     <meta charset="utf-8">
     <title>Bookstore Customer Portal</title>
     <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet">
-    <script src="../static/js/login.js"></script>
-    <link rel="stylesheet" href="../static/styles/style.css">
+    <script src="/static/js/login.js"></script>
+    <link href="/static/styles/style.css" rel="stylesheet">
 </head>
 
 <body>
-    <header>
-        <div class="content-wrapper">
-            <h1>Bookstore</h1>
-            <nav>
-                <a href="index">Home</a>
-                <a href="product">Products</a>
-                <a href="register">Register</a>
-            </nav>
-            <div class="link-icons">
-                <a href="cart">
-                    <i class="fas fa-shopping-cart"></i> <span>0</span>
-                </a>
-            </div>
+<header>
+    <div class="content-wrapper">
+        <h1>Bookstore</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="product.html">Products</a>
+            <a href="register.html">Register</a>
+        </nav>
+        <div class="link-icons">
+            <a href="cart">
+                <i class="fas fa-shopping-cart"></i> <span>0</span>
+            </a>
         </div>
-    </header>
-    <main>
-        <meta charset="utf-8">
-        <title>Login</title>
-        <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet">
-        </head>
-        <div class="login">
-            <h1>Login</h1>
-            <div class="xx">
-                <label for="username">
-                    <i class="fas fa-user"></i>
-                </label>
-                <input type="text" id="username" name="username" placeholder="Username">
-                <label for="password">
-                    <i class="fas fa-lock"></i>
-                </label>
-                <input type="password" id="password" name="password" placeholder="Password">
-                <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}" />
-                <input type="submit" value="Login" onclick="loginClick()">
-                <div>
-                </div>
-    </main>
-    <footer>
-        <div class="content-wrapper">
-            <p>&copy; 2020, Bookstore Ltd.</p>
+    </div>
+</header>
+<main>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet">
+    </head>
+    <div class="login">
+        <h1>Login</h1>
+        <div class="xx">
+            <label for="username">
+                <i class="fas fa-user"></i>
+            </label>
+            <input id="username" name="username" placeholder="Username" type="text">
+            <label for="password">
+                <i class="fas fa-lock"></i>
+            </label>
+            <input id="password" name="password" placeholder="Password" type="password">
+            <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+            <input onclick="loginClick()" type="submit" value="Login">
         </div>
-    </footer>
+    </div>
+</main>
+<footer>
+    <div class="content-wrapper">
+        <p>&copy; 2020, Bookstore Ltd.</p>
+    </div>
+</footer>
 </body>
 
 </html>

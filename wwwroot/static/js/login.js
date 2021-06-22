@@ -7,8 +7,7 @@ function ajax(url, data, onsuccess, onfail) {
                 var token = xmlhttp.getResponseHeader("token");
                 //   console.log(token);
                 onsuccess(xmlhttp.responseText, token);//成功
-            }
-            else {
+            } else {
                 onfail(xmlhttp.status);//失败
             }
         }
@@ -31,22 +30,19 @@ function loginClick() {
                 if (resText == "fail") {
                     alert("用户名或密码错误！");
                     return false;
-                }
-                else if (token == '') {
+                } else if (token == '') {
                     console.log("token设置失败");
-                }
-                else {
+                } else {
                     document.cookie = 'token=' + token;
                     console.log(document.cookie);
                     console.log(token);
-                    window.location.href = '../product.html';
+                    window.location.href = '/product.html';
                 }
             }, function (resStatus) {
 
                 console.log(resStatus);
             })
-    }
-    else {
+    } else {
         alert("请输入完整登陆信息！");
         return false;
     }

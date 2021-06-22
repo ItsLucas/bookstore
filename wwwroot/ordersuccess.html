@@ -9,35 +9,35 @@
 </head>
 
 <body>
-    <header>
-        <div class="content-wrapper">
-            <h1>Bookstore</h1>
-            <nav>
-                <a href="index">Home</a>
-                <a href="product">Products</a>
-                <a href="register">Register</a>
-            </nav>
-            <div class="link-icons">
-                <a href="vip.html">
-                    <p th:text="${user.username}" th:if="${user ne null}"></p>
-                    <a href="cart">
-                        <i class="fas fa-shopping-cart"></i> <span>0</span>
-                    </a>
-            </div>
+<header>
+    <div class="content-wrapper">
+        <h1>Bookstore</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="product.html">Products</a>
+            <a href="register.html">Register</a>
+        </nav>
+        <div class="link-icons">
+            <a href="vip.html">
+                <p th:if="${user ne null}" th:text="${user.username}"></p>
+                <a href="cart">
+                    <i class="fas fa-shopping-cart"></i> <span>0</span>
+                </a>
         </div>
-    </header>
-    <main>
+    </div>
+</header>
+<main>
 
-        <div class="placeorder content-wrapper">
-            <h1>Your Order Has Been Placed</h1>
-            <p>Thank you for ordering with us, we'll contact you by email with your order details.</p>
-        </div>
-    </main>
-    <footer>
-        <div class="content-wrapper">
-            <p>&copy; 2020, Bookstore Ltd.</p>
-        </div>
-    </footer>
+    <div class="placeorder content-wrapper">
+        <h1>Your Order Has Been Placed</h1>
+        <p>Thank you for ordering with us, we'll contact you by email with your order details.</p>
+    </div>
+</main>
+<footer>
+    <div class="content-wrapper">
+        <p>&copy; 2020, Bookstore Ltd.</p>
+    </div>
+</footer>
 </body>
 
 </html>
