@@ -13,12 +13,12 @@ function A_ajax(url, data, token, onsuccess, onfail) {
             }
         }
     }
-    xmlhttp.send(data); //这时才开始发送请求
+    xmlhttp.send(data); //这时才开始发送�?�求
 }
 
 function addCart() {
 
-    var arr = document.cookie.split("；");
+    var arr = document.cookie.split("�?");
     var token;
     arr.forEach(function (cookie) {
         var key = cookie.split("=");
@@ -39,6 +39,7 @@ function addCart() {
         token,
         function (resText) {
             console.log("addCart success");
+            console.log(data);
         }, function (resStatus) {
             if (resStatus == 403) {
                 console.log("token invalid");

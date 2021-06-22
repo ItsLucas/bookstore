@@ -230,7 +230,7 @@ main > .product form {
     margin: 40px 0;
 }
 
-main > .product form input[type="number"] {
+main > .product input[type="number"] {
     width: 400px;
     padding: 10px;
     margin-bottom: 15px;
@@ -239,7 +239,7 @@ main > .product form input[type="number"] {
     border-radius: 5px;
 }
 
-main > .product form input[type="submit"] {
+main > .product input[type="submit"] {
     background: #4e5c70;
     border: 0;
     color: #FFFFFF;
@@ -252,7 +252,7 @@ main > .product form input[type="submit"] {
     cursor: pointer;
 }
 
-main > .product form input[type="submit"]:hover {
+main > .product input[type="submit"]:hover {
     background: #434f61;
 }
 

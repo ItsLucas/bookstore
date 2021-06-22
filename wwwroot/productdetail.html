@@ -22,7 +22,7 @@
             <a href="vip.html">
                 <p id="username"></p></a>
                 <a href="cart.html">
-                    <i class="fas fa-shopping-cart"></i> <span>0</span>
+                    <i class="fas fa-shopping-cart"></i>
                 </a>
         </div>
     </div>
@@ -81,32 +81,14 @@
                         background-color: #ddd;
                     }
                 </style>
-                <div class="content">
-                    <table id="vip.html">
-                        <tr>
-                            <th>用户</th>
-                            <th>分数</th>
-                            <th>评价</th>
-                        </tr>
-                        <tr>
-                            <td>test</td>
-                            <td>100</td>
-                            <td>good</td>
-                        </tr>
-                    </table>
-                    <ul>
-                        <li style="background-color: white;">
-                            <a href="comments.php?pid=<?=$_GET['id']?>">Comment</a>
-                        </li>
-                    </ul>
-                </div>
+                
             </div>
         </div>
     </div>
 
     <script>
-        //   var bookId =parseInt(window.location.search);
-        var bookId = 1;
+        var bookId =parseInt(window.location.search.split("=")[1]);
+        //var bookId = 1;
         var book;
         validate("https://itslucas.me/api/productdetail?id=" + bookId, init);
 
