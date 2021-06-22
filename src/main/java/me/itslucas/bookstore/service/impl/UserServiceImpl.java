@@ -1,12 +1,8 @@
 package me.itslucas.bookstore.service.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import io.jsonwebtoken.Jwts;
-import me.itslucas.bookstore.conf.SecurityConstants;
 import me.itslucas.bookstore.domain.*;
 import me.itslucas.bookstore.domain.security.PasswordResetToken;
-import me.itslucas.bookstore.domain.security.UserRole;
 import me.itslucas.bookstore.repository.*;
 import me.itslucas.bookstore.service.UserService;
 import org.slf4j.Logger;
@@ -20,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {

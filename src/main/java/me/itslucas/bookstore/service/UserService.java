@@ -6,9 +6,6 @@ import me.itslucas.bookstore.domain.UserBilling;
 import me.itslucas.bookstore.domain.UserPayment;
 import me.itslucas.bookstore.domain.UserShipping;
 import me.itslucas.bookstore.domain.security.PasswordResetToken;
-import me.itslucas.bookstore.domain.security.UserRole;
-
-import java.util.Set;
 
 public interface UserService {
     PasswordResetToken getPasswordResetToken(final String token);

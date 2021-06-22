@@ -22,14 +22,14 @@
             <a href="logout">Logout</a>
         </nav>
         <div class="link-icons">
-            <a href="vip"><p id="username" ></p>
+            <a href="vip"><p id="username"></p>
                 <a href="cart">
                     <i class="fas fa-shopping-cart"></i>
                 </a>
         </div>
     </div>
     <script>
-       if(username) document.getElementById("username").innerHTML = username;
+        if (username) document.getElementById("username").innerHTML = username;
     </script>
 </header>
 <main>
@@ -39,7 +39,7 @@
     </div>
     <div class="recentlyadded content-wrapper">
         <h2>Recently Added Products</h2>
-        <div id="products" class="products">
+        <div class="products" id="products">
         </div>
     </div>
 </main>
@@ -49,20 +49,20 @@
     </div>
 </footer>
 <script>
-    var div=document.getElementById("products");
-    books.forEach(function (book){
+    var div = document.getElementById("products");
+    books.forEach(function (book) {
         var a = document.createElement("a");
         a.className = 'product';
-        a.href=" /productdetail"+book.id;
+        a.href = " /productdetail" + book.id;
         var img = document.createElement("img");
-        img.height="200";
-        img.src="/imgs/"+book.id+".jpg";
-        img.width="200";
+        img.height = "200";
+        img.src = "/imgs/" + book.id + ".jpg";
+        img.width = "200";
         var span1 = document.createElement("span");
-        span1.className="name";
+        span1.className = "name";
         span1.innerHTML = book.title;
         var span2 = document.createElement("span");
-        span2.classname="price";
+        span2.classname = "price";
         span2.innerHTML = book.listPrice;
         a.appendChild(img);
         a.appendChild(span1);

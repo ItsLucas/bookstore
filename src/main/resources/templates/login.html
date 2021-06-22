@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <meta charset="utf-8">
     <title>Bookstore Customer Portal</title>
-    <link rel="stylesheet" href="/styles/style.css" type="text/css">
+    <link href="/styles/style.css" rel="stylesheet" type="text/css">
     <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet">
     <script src="../static/js/login.js"></script>
 </head>
@@ -42,9 +42,9 @@
             <input name="${_csrf.parameterName}"
                    type="hidden"
                    value="${_csrf.token}"/>
-            <input type="submit" value="Login" onclick="loginClick">
-            </div>
+            <input onclick="loginClick" type="submit" value="Login">
         </div>
+    </div>
 </main>
 <footer>
     <div class="content-wrapper">

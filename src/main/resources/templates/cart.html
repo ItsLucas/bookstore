@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:form="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
     <meta charset="utf-8">
     <script src="../static/js/validate.js"></script>
     <title>Bookstore Customer Portal</title>
-    <link rel="stylesheet" href="/styles/style.css" type="text/css">
+    <link href="/styles/style.css" rel="stylesheet" type="text/css">
     <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet">
     <script src="../static/js/placeOrder.js"></script>
 </head>
@@ -54,18 +54,18 @@
                 <tbody id="cartItems">
                 </tbody>
             </table>
-            <div id="subtotal" class="subtotal">
+            <div class="subtotal" id="subtotal">
                 <span class="text">Discount</span>
                 <span class="price">&dollar;0</span>
                 <span class="text">Subtotal</span>
                 <span class="price" id="subprice">&dollar;233</span>
             </div>
             <div class="buttons">
-                <input name="placeorder" type="submit" value="Place Order onclick="placeOrder">
+                <input name="placeorder" placeOrder type="submit" value="Place Order onclick="">
                 <script>
-                    function placeOrder(){
-                    validate("../api/placeorder");
-                }
+                    function placeOrder() {
+                        validate("../api/placeorder");
+                    }
                 </script>
             </div>
         </div>
@@ -77,46 +77,46 @@
     </div>
 </footer>
 <script>
-    var tbody=document.getElementById("cartItems");
-    cartItems.forEach(function (cartItem){
+    var tbody = document.getElementById("cartItems");
+    cartItems.forEach(function (cartItem) {
         var tr = document.createElement("tr");
         var td = document.createElement("td");
         td.className = "img";
         var a = document.createElement("a");
-        a.href = "/productdetail"+cartItem.book.id;
+        a.href = "/productdetail" + cartItem.book.id;
         var img = document.createElement("img");
-        img.src="/imgs/"+cartItem.getBook().getId()+".jpg";
-        img.width="50";
-        img.height="50";
+        img.src = "/imgs/" + cartItem.getBook().getId() + ".jpg";
+        img.width = "50";
+        img.height = "50";
         a.appendChild(img);
         td.appendChild(a);
         tr.appendChild(td);
 
         var td = document.createElement("td");
         var a = document.createElement("a");
-        a.href = "/productdetail"+cartItem.book.id;
+        a.href = "/productdetail" + cartItem.book.id;
         a.innerHTML = cartItem.book.getTitle();
         var input = document.createElement("input");
-        input.type="submit";
-        input.value="Delete from Cart";
-        input.id=cartItem.book.id;
-        input.onclick="DeleteCart";
+        input.type = "submit";
+        input.value = "Delete from Cart";
+        input.id = cartItem.book.id;
+        input.onclick = "DeleteCart";
         a.appendChild(input);
         td.appendChild(a);
         tr.appendChild(td);
 
         var td = document.createElement("td");
-        td.className="price";
-        td.innerHTML = cartItem.book.getListPrice()+"dollar";
+        td.className = "price";
+        td.innerHTML = cartItem.book.getListPrice() + "dollar";
         tr.appendChild(td);
 
         var td = document.createElement("td");
-        td.className="quantity";
+        td.className = "quantity";
         var input = document.createElement("input");
-        input.type="number";
-        input.name="quantity-F0019";
-        input.value="1";
-        input.placeholder="Quantity";
+        input.type = "number";
+        input.name = "quantity-F0019";
+        input.value = "1";
+        input.placeholder = "Quantity";
         td.appendChild(input);
         tr.appendChild(td);
 

@@ -16,7 +16,7 @@
             <a href="register">Register</a>
         </nav>
         <div class="link-icons">
-            <a href="vip"><p th:text="${user.username}" th:if="${user ne null}"></p>
+            <a href="vip"><p th:if="${user ne null}" th:text="${user.username}"></p>
                 <a href="cart">
                     <i class="fas fa-shopping-cart"></i> <span>0</span>
                 </a>

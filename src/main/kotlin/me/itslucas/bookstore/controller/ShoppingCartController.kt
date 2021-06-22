@@ -6,7 +6,6 @@ import me.itslucas.bookstore.service.CartItemService
 import me.itslucas.bookstore.service.OrderService
 import me.itslucas.bookstore.service.ShoppingCartService
 import me.itslucas.bookstore.service.UserService
-import me.itslucas.bookstore.utility.USConstants
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -51,10 +50,10 @@ class ShoppingCartController {
 
     @PostMapping("/addcart")
     fun addcart(
-            @RequestParam(name = "product_id", required = true, defaultValue = "1") id: Long?,
-            @RequestParam(name = "quantity", required = true, defaultValue = "1") num: Int,
-            model: Model?,
-            principal: Principal?
+        @RequestParam(name = "product_id", required = true, defaultValue = "1") id: Long?,
+        @RequestParam(name = "quantity", required = true, defaultValue = "1") num: Int,
+        model: Model?,
+        principal: Principal?
     ): ModelAndView {
         var mav: ModelAndView? = null
 
@@ -67,8 +66,8 @@ class ShoppingCartController {
 
     @PostMapping("/placeorder")
     fun placeorder(
-            model: Model?,
-            principal: Principal?
+        model: Model?,
+        principal: Principal?
     ): String {
         val user = userService?.findByUsername(principal?.name)
         val cartItemList = cartItemService!!.findByShoppingCart(user!!.shoppingCart)
@@ -80,9 +79,9 @@ class ShoppingCartController {
 
     @GetMapping("/removeCart")
     fun delcart(
-            @RequestParam(name = "product_id", required = true, defaultValue = "1") id: Long?,
-            model: Model?,
-            principal: Principal?
+        @RequestParam(name = "product_id", required = true, defaultValue = "1") id: Long?,
+        model: Model?,
+        principal: Principal?
     ): ModelAndView {
         var mav: ModelAndView? = null
         val user: User = userService!!.findByUsername(principal!!.name)

@@ -29,6 +29,7 @@ class UserController(
     private val roleRepository: RoleRepository? = null
 
     private var bCryptPasswordEncoder: BCryptPasswordEncoder? = null
+
     @PostMapping("/record")
     fun signUp(
         @RequestParam(name = "username", required = false, defaultValue = "World") name: String,

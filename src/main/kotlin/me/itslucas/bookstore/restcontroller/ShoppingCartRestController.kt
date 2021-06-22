@@ -1,17 +1,13 @@
 package me.itslucas.bookstore.restcontroller
 
 import me.itslucas.bookstore.domain.CartItem
-import me.itslucas.bookstore.domain.ShoppingCart
 import me.itslucas.bookstore.domain.User
 import me.itslucas.bookstore.repository.BookRepository
 import me.itslucas.bookstore.service.CartItemService
 import me.itslucas.bookstore.service.OrderService
 import me.itslucas.bookstore.service.ShoppingCartService
 import me.itslucas.bookstore.service.UserService
-import me.itslucas.bookstore.utility.USConstants
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.stereotype.Controller
-import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestParam

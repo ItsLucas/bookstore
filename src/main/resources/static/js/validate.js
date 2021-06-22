@@ -1,38 +1,32 @@
-function ajax(url,token,onsuccess,onfail)
-{
+function ajax(url, token, onsuccess, onfail) {
     var xmlhttp = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
     xmlhttp.open("POST", url, true);
-    xmlhttp.setRequestHeader("Authorization",token);
-    xmlhttp.onreadystatechange = function ()
-    {
-        if (xmlhttp.readyState == 4)
-        {
-            if (xmlhttp.status == 200)
-            {
+    xmlhttp.setRequestHeader("Authorization", token);
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4) {
+            if (xmlhttp.status == 200) {
                 onsuccess(xmlhttp.responseText);//成功
-            }
-            else if(xmlhttp.status == 403)
-            {
+            } else if (xmlhttp.status == 403) {
                 onfail();//失败
             }
         }
     }
     xmlhttp.send(); //这时才开始发送请求
 }
-function validate(baseUrl){
+
+function validate(baseUrl) {
     var token = document.cookie;
-    if(token){
-        ajax(baseUrl,token,
-            function (resText){
+    if (token) {
+        ajax(baseUrl, token,
+            function (resText) {
                 console.log("token valid");
                 var data = JSON.parse(resText);
                 return data;
-        },function (){
-            console.log("token invalid");
-            window.location.href="/login";
+            }, function () {
+                console.log("token invalid");
+                window.location.href = "/login";
             })
-    }
-    else{
+    } else {
         console.log("token null");
         window.location.href = '/login';
     }
