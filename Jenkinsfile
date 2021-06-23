@@ -65,7 +65,7 @@ spec:
     stage('Deploy For Production') {
       steps {
         container('helm'){
-          sh "helm upgrade --install frontend --wait --cleanup-on-fail ./frontend-chart"
+          sh "helm upgrade --install frontend --wait --cleanup-on-fail --recreate-pods ./frontend-chart"
         }
       }
     }
