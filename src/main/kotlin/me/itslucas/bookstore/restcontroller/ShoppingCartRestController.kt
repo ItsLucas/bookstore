@@ -7,17 +7,26 @@ import me.itslucas.bookstore.service.CartItemService
 import me.itslucas.bookstore.service.OrderService
 import me.itslucas.bookstore.service.ShoppingCartService
 import me.itslucas.bookstore.service.UserService
+import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.kafka.annotation.KafkaListener
+import org.springframework.kafka.core.KafkaTemplate
+import org.springframework.stereotype.Component
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.servlet.ModelAndView
 import java.security.Principal
+import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
 
 
 @RestController
+@Component
 class ShoppingCartRestController {
+    @Autowired
+    private val kafkaTemplate: KafkaTemplate<String,String>? = null
+
     @Autowired
     private val cartItemService: CartItemService? = null
 
@@ -67,13 +76,17 @@ class ShoppingCartRestController {
     fun placeorder(
         principal: Principal?
     ): String {
-        val user = userService?.findByUsername(principal?.name)
-        val cartItemList = cartItemService!!.findByShoppingCart(user!!.shoppingCart)
-        orderService?.createOrder(user.shoppingCart, user)
-        shoppingCartService?.clearShoppingCart(user.shoppingCart)
+        kafkaTemplate?.send("billing",principal?.name)
         return "ordersuccess"
     }
 
+    @KafkaListener(topics = ["billing"])
+    fun real_placeorder(record: ConsumerRecord<String, String>) {
+        val user = userService?.findByUsername(record.value())
+        val cartItemList = cartItemService!!.findByShoppingCart(user!!.shoppingCart)
+        orderService?.createOrder(user.shoppingCart, user)
+        shoppingCartService?.clearShoppingCart(user.shoppingCart)
+    }
     @GetMapping("/api/removeCart")
     fun delcart(
         @RequestParam(name = "product_id", required = true, defaultValue = "1") id: Long?,

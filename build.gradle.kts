@@ -40,6 +40,7 @@ dependencies {
     implementation("io.jsonwebtoken:jjwt-api:0.11.2")
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.2")
     runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.2")
+    implementation("org.springframework.kafka:spring-kafka")
 //    implementation("org.grails:gorm-hibernate5-spring-boot:7.0.1.RELEASE")
 //    implementation("org.codehaus.groovy:groovy")
 }

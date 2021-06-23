@@ -6,18 +6,27 @@ import me.itslucas.bookstore.domain.User
 import me.itslucas.bookstore.repository.BookRepository
 import me.itslucas.bookstore.service.OrderService
 import me.itslucas.bookstore.service.UserService
+import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.PageRequest
+import org.springframework.kafka.annotation.KafkaListener
+import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.security.core.Authentication
+import org.springframework.stereotype.Component
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import java.security.Principal
+import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
 
 @RestController
+@Component
 class HomeRestController {
     private val LOG = LoggerFactory.getLogger(HomeRestController::class.java)
+
+    @Autowired
+    private val kafkaTemplate: KafkaTemplate<String, String>? = null
 
     @Autowired
     private val bookRepository: BookRepository? = null
@@ -59,5 +68,16 @@ class HomeRestController {
             }
         }
         return Pair(user, orders?.toList())
+    }
+
+    @GetMapping("/sendk")
+    fun kafkasendtest(@RequestParam(name = "msg") msg: String): String {
+        kafkaTemplate?.send("test",msg);
+        return "sent: $msg"
+    }
+
+    @KafkaListener(topics = ["test"])
+    fun kafkarecvtest(record: ConsumerRecord<String, String>) {
+        LOG.info("recv: ${record.value()}")
     }
 }

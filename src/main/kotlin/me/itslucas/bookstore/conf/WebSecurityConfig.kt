@@ -30,6 +30,7 @@ class WebSecurityConfig(
     override fun configure(http: HttpSecurity) {
         http.cors().and().csrf().disable().authorizeRequests()
             .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
+            .antMatchers(HttpMethod.GET, "/sendk").permitAll()
             .anyRequest().authenticated()
             .and()
             .addFilter(AuthenticationFilter(authenticationManager()))

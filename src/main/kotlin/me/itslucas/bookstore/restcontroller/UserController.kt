@@ -5,11 +5,13 @@ import me.itslucas.bookstore.repository.RoleRepository
 import me.itslucas.bookstore.service.UserService
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.web.bind.annotation.*
 import java.security.Principal
 import java.util.*
+import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
 
 
 @RestController
@@ -18,6 +20,9 @@ class UserController(
     bCryptPasswordEncoder: BCryptPasswordEncoder
 ) {
     private val LOG = LoggerFactory.getLogger(UserController::class.java)
+
+    @Autowired
+    private val kafkaTemplate: KafkaTemplate<String, JvmType.Object>? = null
 
     @Autowired
     private val passwordEncoder: PasswordEncoder? = null
