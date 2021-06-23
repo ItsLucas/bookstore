@@ -15,7 +15,7 @@ function ajax(url, token, onsuccess, onfail) {
 }
 
 function validate(baseUrl, callback) {
-    var arr = document.cookie.split("；");
+    var arr = document.cookie.split(";");
     //  console.log(document.cookie);
     var token;
     arr.forEach(function (cookie) {

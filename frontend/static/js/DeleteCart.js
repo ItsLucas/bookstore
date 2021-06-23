@@ -19,7 +19,7 @@ function D_ajax(url, data, token, onsuccess, onfail) {
 function DeleteCart(e) {
     var product_id = e.target.id;
     console.log("product_id" + product_id);
-    var arr = document.cookie.split("；");
+    var arr = document.cookie.split(";");
     var token;
     arr.forEach(function (cookie) {
         var key = cookie.split("=");
