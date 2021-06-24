@@ -1,13 +1,16 @@
 package me.itslucas.bookstore.restcontroller
 
+import me.itslucas.bookstore.domain.Book
 import me.itslucas.bookstore.domain.CartItem
 import me.itslucas.bookstore.domain.User
 import me.itslucas.bookstore.repository.BookRepository
+import me.itslucas.bookstore.repository.CartItemRepository
 import me.itslucas.bookstore.service.CartItemService
 import me.itslucas.bookstore.service.OrderService
 import me.itslucas.bookstore.service.ShoppingCartService
 import me.itslucas.bookstore.service.UserService
 import org.apache.kafka.clients.consumer.ConsumerRecord
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.kafka.core.KafkaTemplate
@@ -18,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.servlet.ModelAndView
 import java.security.Principal
-import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
+import kotlin.properties.Delegates
 
 
 @RestController
@@ -29,6 +32,9 @@ class ShoppingCartRestController {
 
     @Autowired
     private val cartItemService: CartItemService? = null
+
+    @Autowired
+    private val cartItemRepository: CartItemRepository? = null
 
     @Autowired
     private val shoppingCartService: ShoppingCartService? = null
@@ -42,14 +48,13 @@ class ShoppingCartRestController {
     @Autowired
     private val orderService: OrderService? = null
 
+    val LOG = LoggerFactory.getLogger(this::class.java)
+
     @GetMapping("/api/cart")
     fun shoppingCart(principal: Principal?): List<CartItem>? {
-        //val principal = SecurityContextHolder.getContext().authentication.principal as UserDetails;
-        var user = userService!!.findByUsername(principal!!.name)
-        var shoppingCart = user.shoppingCart
-
-        var cartItemList = cartItemService?.findByShoppingCart(shoppingCart)?.toList()
-        shoppingCartService?.updateShoppingCart(shoppingCart)
+        val user = userService!!.findByUsername(principal!!.name)
+        val shoppingCart = user.shoppingCart
+        val cartItemList = cartItemService?.findByShoppingCart(shoppingCart)?.toList()
         if (cartItemList != null) {
             for (cartItem in cartItemList) {
                 cartItem.shoppingCart = null
@@ -60,15 +65,21 @@ class ShoppingCartRestController {
         return cartItemList
     }
 
+    class AddCartAPI {
+        var quantity by Delegates.notNull<Int>()
+        var product_id by Delegates.notNull<Long>()
+    }
+
     @PostMapping("/api/addcart")
+    @ResponseBody
     fun addcart(
-        @RequestParam(name = "product_id", required = true, defaultValue = "1") id: Long?,
-        @RequestParam(name = "quantity", required = true, defaultValue = "1") num: Int,
+        @RequestBody req: AddCartAPI,
         principal: Principal?
     ): String {
         val user: User = userService!!.findByUsername(principal!!.name)
-        val book = id?.let { bookService?.findById(it) }
-        val cartItem = cartItemService!!.addBookToCartItem(book?.get(), user, 1)
+        val book: Book = bookService!!.findById(req.product_id).get()
+        cartItemService!!.addBookToCartItem(book, user, req.quantity)
+        LOG.warn("User ${user.username} Book ${req.product_id}:${book.title} x ${req.quantity}")
         return "Success"
     }
 
@@ -87,14 +98,20 @@ class ShoppingCartRestController {
         orderService?.createOrder(user.shoppingCart, user)
         shoppingCartService?.clearShoppingCart(user.shoppingCart)
     }
-    @GetMapping("/api/removeCart")
+
+    class DeleteCartAPI {
+        var product_id by Delegates.notNull<Long>()
+    }
+
+    @PostMapping("/api/removeCart")
     fun delcart(
-        @RequestParam(name = "product_id", required = true, defaultValue = "1") id: Long?,
+        @RequestBody req: DeleteCartAPI,
         principal: Principal?
     ): String {
-        var mav: ModelAndView? = null
         val user: User = userService!!.findByUsername(principal!!.name)
-        val cartItem = cartItemService!!.findByShoppingCart(shoppingCartService?.getByName(user))
+        val book = bookService!!.findById(req.product_id).get()
+        val cartItem = cartItemRepository!!.findByShoppingCartAndBook(user.shoppingCart,book)[0]
+        cartItemService!!.removeCartItem(cartItem)
         return "deletesuccess"
     }
 }

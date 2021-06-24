@@ -32,7 +32,7 @@ class User : UserDetails {
     private var enabled = true
 
     @OneToOne(cascade = [CascadeType.ALL])
-    var shoppingCart: ShoppingCart? = null
+    var shoppingCart: ShoppingCart = ShoppingCart()
 
     @OneToMany(cascade = [CascadeType.ALL])
     var userShippingList: List<UserShipping>? = null

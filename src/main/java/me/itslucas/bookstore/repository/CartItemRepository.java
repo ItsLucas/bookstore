@@ -1,5 +1,6 @@
 package me.itslucas.bookstore.repository;
 
+import me.itslucas.bookstore.domain.Book;
 import me.itslucas.bookstore.domain.CartItem;
 import me.itslucas.bookstore.domain.Order;
 import me.itslucas.bookstore.domain.ShoppingCart;
@@ -10,6 +11,8 @@ import java.util.List;
 
 @Transactional
 public interface CartItemRepository extends CrudRepository<CartItem, Long> {
+    List<CartItem> findByShoppingCartAndBook(ShoppingCart shoppingCart, Book book);
+
     List<CartItem> findByShoppingCart(ShoppingCart shoppingCart);
 
     List<CartItem> findByOrder(Order order);
