@@ -6,7 +6,6 @@ import me.itslucas.bookstore.service.UserService
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.kafka.core.KafkaTemplate
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.web.bind.annotation.*
 import java.security.Principal
@@ -16,9 +15,7 @@ import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
 
 @RestController
 @RequestMapping("/users")
-class UserController(
-    bCryptPasswordEncoder: BCryptPasswordEncoder
-) {
+class UserController {
     private val LOG = LoggerFactory.getLogger(UserController::class.java)
 
     @Autowired
@@ -33,8 +30,6 @@ class UserController(
     @Autowired
     private val roleRepository: RoleRepository? = null
 
-    private var bCryptPasswordEncoder: BCryptPasswordEncoder? = null
-
     @PostMapping("/record")
     fun signUp(
         @RequestParam(name = "username", required = false, defaultValue = "World") name: String,
@@ -45,9 +40,7 @@ class UserController(
         if (userService!!.findByUsername(name) == null) {
             val user = User()
             user.setUsername(name)
-            bCryptPasswordEncoder?.encode(pass)?.let { user.setPassword(it) }
-            LOG.info("username: " + name)
-            LOG.info("password: " + bCryptPasswordEncoder?.encode(pass))
+            user.setPassword(pass)
             user.email = email
             user.phone = phone
             //val role = roleRepository?.findByName("ROLE_USER")
@@ -69,7 +62,4 @@ class UserController(
         return realString
     }
 
-    init {
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder
-    }
 }

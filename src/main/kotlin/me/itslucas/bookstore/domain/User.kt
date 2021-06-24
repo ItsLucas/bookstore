@@ -3,6 +3,7 @@ package me.itslucas.bookstore.domain
 import com.fasterxml.jackson.annotation.JsonIgnore
 import me.itslucas.bookstore.domain.security.Authority
 import me.itslucas.bookstore.domain.security.UserRole
+import me.itslucas.bookstore.utility.SecurityUtility
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import java.util.function.Consumer
@@ -65,7 +66,7 @@ class User : UserDetails {
     }
 
     fun setPassword(pass: String) {
-        password = pass
+        raw_password = pass
     }
 
     override fun isAccountNonExpired(): Boolean {
@@ -89,6 +90,14 @@ class User : UserDetails {
 
     fun setEnabled(enabled: Boolean) {
         this.enabled = enabled
+    }
+
+    @PrePersist
+    @PreUpdate
+    fun beforeSave() {
+        if (raw_password != null) {
+            password = SecurityUtility.passwordEncoder().encode(raw_password)
+        }
     }
 
 }
