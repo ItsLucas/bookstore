@@ -1,6 +1,6 @@
 function D_ajax(url, data, token, onsuccess, onfail) {
     var xmlhttp = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    xmlhttp.open("GET", url, true);
+    xmlhttp.open("POST", url, true);
     xmlhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
     xmlhttp.setRequestHeader("Authorization", token);
     xmlhttp.onreadystatechange = function () {
@@ -27,7 +27,7 @@ function DeleteCart(e) {
     })
 
     var data = {
-        "name": product_id
+        "product_id": product_id
     }
     var stringData = JSON.stringify(data);
 
